@@ -1,12 +1,12 @@
 {
+  "rewrites": [
+    { "source": "/", "destination": "/cel.htm" }
+  ],
   "headers": [
     {
       "source": "/(.*)",
       "headers": [
-        {
-          "key": "X-Robots-Tag",
-          "value": "index, follow"
-        }
+        { "key": "X-Robots-Tag", "value": "index, follow" }
       ]
     }
   ]
