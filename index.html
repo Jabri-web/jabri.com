@@ -49,7 +49,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="twitter:description" content="باحث يمني - تراث اليمن العريق + أبحاث ريمان">
 <meta name="twitter:image" content="https://jabri.com/image/Jabri-photo.png">
 
-<!-- Schema.org JSON-LD -->
+<!-- Schema.org JSON-LD قوي -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -63,6 +63,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       "image": "https://jabri.com/image/Jabri-photo.png",
       "jobTitle": "Researcher & Web Developer",
       "nationality": "Yemeni",
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "King Fahd University of Petroleum and Minerals",
+        "alternateName": "KFUPM"
+      },
       "email": "mailto:jabri62018@gmail.com",
       "sameAs": ["https://github.com/Jabri-web","https://orcid.org/0009-0003-3319-3822"]
     },
@@ -73,7 +78,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       "alternateName": "Heaven Al-Jabri",
       "url": "https://jabri.com/",
       "logo": {"@type": "ImageObject","url": "https://jabri.com/image/Yemen2026.png"},
-      "founder": {"@id": "https://jabri.com/#person"}
+      "founder": {"@id": "https://jabri.com/#person"},
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Sanaa",
+        "addressCountry": "YE"
+      }
     },
     {
       "@type": "WebSite",
@@ -110,7 +120,7 @@ footer{background:#0a0a0a;color:#666;text-align:center;padding:15px;margin-top:2
 .ar{display:inline}
 .en{display:none}
 body.en.ar{display:none}
-body.en{display:inline}
+body.en.en{display:inline}
 </style>
 </head>
 <body>
@@ -147,8 +157,14 @@ body.en{display:inline}
   <a href="Office.html" target="_blank" class="repo-btn"><span>Jabri.com</span><span>11</span></a>
 </div>
 
+<div class="group">
+  <div class="group-title"><span class="ar">السيرة الذاتية</span><span class="en">About Me</span></div>
+  <a href="about-ar.html" class="repo-btn"><span class="ar">السيرة بالعربية</span><span class="en">Arabic CV</span></a>
+  <a href="about.html" class="repo-btn"><span class="ar">السيرة بالانجليزية</span><span class="en">English CV</span></a>
+</div>
+
 <footer>
-<p>© 2026 <span class="ar">م. عبدالله محمد ناصر الجبري</span><span class="en">Eng. Abdulla Mohammed Nasser Al-Jabri</span></p>
+<p>© 2026 <span class="ar">م. عبدالله محمد ناصر الجبري - صنعاء اليمن</span><span class="en">Eng. Abdulla Mohammed Nasser Al-Jabri - Sanaa, Yemen</span></p>
 </footer>
 
 <script>
