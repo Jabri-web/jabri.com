@@ -1,6 +1,8 @@
 User-agent: *
 Allow: /
+
 Disallow: /login
-Disallow: /dashboard
+Disallow: /dashboard  
 Disallow: /api/
-Sitemap: https://jabri.com/sitemap.xml
+
+Sitemap: https://jabricom.vercel.app/sitemap.xml
