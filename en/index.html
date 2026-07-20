@@ -5,69 +5,114 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <title>Home - Heaven Al-Jabri</title>
-    <meta name="description" content="Home page of Heaven Al-Jabri - Yemen heritage and scientific research">
     
-    <!-- Language alternates for SEO -->
     <link rel="alternate" hreflang="ar" href="../ar/index.html" />
     <link rel="alternate" hreflang="en" href="index.html" />
     
-    <!-- Load English header and footer -->
     <script src="../js/init-page-en.js" defer></script>
     
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #0b0b16;
+            color: #d0d0ea;
+            font-family: 'Segoe UI', 'Tahoma', system-ui, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
         .language-switch {
             position: fixed;
             top: 20px;
-            right: 20px;
             z-index: 1000;
+            display: flex;
+            gap: 4px;
             background: #1a1a32;
-            padding: 8px 16px;
+            padding: 6px 12px;
             border-radius: 30px;
             border: 1px solid #2a2a4e;
-            display: flex;
-            gap: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
         }
-        .language-switch a {
+        
+        body.ar .language-switch {
+            left: 20px;
+        }
+        
+        body.en .language-switch {
+            right: 20px;
+        }
+        
+        .language-switch button {
+            background: none;
+            border: none;
+            color: #8888bb;
+            padding: 6px 14px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+        
+        .language-switch button:hover {
             color: #d0d0ea;
-            text-decoration: none;
-            padding: 4px 12px;
-            border-radius: 20px;
-            transition: 0.3s;
-            font-size: 0.9rem;
-        }
-        .language-switch a.active {
-            background: #6ae3ff;
-            color: #0b0b16;
-        }
-        .language-switch a:hover {
             background: #2a2a4e;
         }
         
+        .language-switch button.active {
+            background: #6ae3ff;
+            color: #0b0b16;
+        }
+        
+        .language-switch button.active:hover {
+            background: #5ad0f0;
+        }
+        
         .hero-section {
-            min-height: 60vh;
+            flex: 1;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 3rem 1.5rem;
             background: linear-gradient(135deg, #0b0b16 0%, #1a1a32 100%);
+            min-height: 60vh;
         }
+        
         .hero-content {
             max-width: 800px;
             text-align: center;
             color: #d0d0ea;
         }
+        
         .hero-content h1 {
             font-size: 3rem;
             margin-bottom: 1.5rem;
             background: linear-gradient(135deg, #6ae3ff, #a78bfa);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
+        
         .hero-content p {
             font-size: 1.2rem;
             line-height: 1.8;
             color: #b0b0d0;
+            margin-bottom: 1rem;
         }
+        
+        .hero-content .highlight {
+            color: #6ae3ff;
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+        
         .btn-primary {
             display: inline-block;
             padding: 12px 30px;
@@ -76,12 +121,36 @@
             text-decoration: none;
             border-radius: 30px;
             font-weight: bold;
-            transition: 0.3s;
+            transition: all 0.3s ease;
             margin-top: 1.5rem;
         }
+        
         .btn-primary:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 25px rgba(106, 227, 255, 0.3);
+        }
+        
+        @media (max-width: 600px) {
+            .language-switch {
+                top: 10px;
+                padding: 4px 8px;
+            }
+            body.ar .language-switch {
+                left: 10px;
+            }
+            body.en .language-switch {
+                right: 10px;
+            }
+            .language-switch button {
+                padding: 4px 10px;
+                font-size: 0.75rem;
+            }
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            .hero-content p {
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
@@ -89,8 +158,8 @@
     
     <!-- Language Switch -->
     <div class="language-switch">
-        <a href="../ar/index.html">🇸🇦 عربي</a>
-        <a href="index.html" class="active">🇬🇧 English</a>
+        <button id="lang-ar" onclick="switchLanguage('ar')">🇸🇦 عربي</button>
+        <button id="lang-en" class="active" onclick="switchLanguage('en')">🇬🇧 English</button>
     </div>
     
     <!-- Page Content -->
@@ -100,8 +169,8 @@
             <p>
                 Documenting Yemen's rich heritage and scientific research in mathematics and theoretical physics.
             </p>
-            <p style="color: #6ae3ff; font-size: 1.1rem; margin-top: 0.5rem;">
-                <strong>Unified Sindbad Theory (Z+C+A=1)</strong>
+            <p class="highlight">
+                Unified Sindbad Theory (Z+C+A=1)
             </p>
             <a href="about.html" class="btn-primary">Learn About the Researcher →</a>
         </div>
