@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Home - Heaven Al-Jabri</title>
+    <meta name="description" content="Home page of Heaven Al-Jabri - Yemen heritage and scientific research">
+    
+    <!-- Language alternates for SEO -->
+    <link rel="alternate" hreflang="ar" href="../ar/index.html" />
+    <link rel="alternate" hreflang="en" href="index.html" />
+    
+    <!-- Load English header and footer -->
+    <script src="../js/init-page-en.js" defer></script>
+    
+    <style>
+        .language-switch {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: #1a1a32;
+            padding: 8px 16px;
+            border-radius: 30px;
+            border: 1px solid #2a2a4e;
+            display: flex;
+            gap: 8px;
+        }
+        .language-switch a {
+            color: #d0d0ea;
+            text-decoration: none;
+            padding: 4px 12px;
+            border-radius: 20px;
+            transition: 0.3s;
+            font-size: 0.9rem;
+        }
+        .language-switch a.active {
+            background: #6ae3ff;
+            color: #0b0b16;
+        }
+        .language-switch a:hover {
+            background: #2a2a4e;
+        }
+        
+        .hero-section {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem 1.5rem;
+            background: linear-gradient(135deg, #0b0b16 0%, #1a1a32 100%);
+        }
+        .hero-content {
+            max-width: 800px;
+            text-align: center;
+            color: #d0d0ea;
+        }
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #6ae3ff, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero-content p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #b0b0d0;
+        }
+        .btn-primary {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #6ae3ff;
+            color: #0b0b16;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: 0.3s;
+            margin-top: 1.5rem;
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(106, 227, 255, 0.3);
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Language Switch -->
+    <div class="language-switch">
+        <a href="../ar/index.html">🇸🇦 عربي</a>
+        <a href="index.html" class="active">🇬🇧 English</a>
+    </div>
+    
+    <!-- Page Content -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1>🌿 Heaven Al-Jabri</h1>
+            <p>
+                Documenting Yemen's rich heritage and scientific research in mathematics and theoretical physics.
+            </p>
+            <p style="color: #6ae3ff; font-size: 1.1rem; margin-top: 0.5rem;">
+                <strong>Unified Sindbad Theory (Z+C+A=1)</strong>
+            </p>
+            <a href="about.html" class="btn-primary">Learn About the Researcher →</a>
+        </div>
+    </section>
+    
+    <!-- Footer Placeholder -->
+    <div id="footer-placeholder"></div>
+    
+</body>
+</html>
