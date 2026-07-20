@@ -1,13 +1,14 @@
 {
-  "rewrites": [
-    { "source": "/", "destination": "/cel.htm" }
-  ],
-  "headers": [
+  "redirects": [
     {
-      "source": "/(.*)",
-      "headers": [
-        { "key": "X-Robots-Tag", "value": "index, follow" }
-      ]
+      "source": "/",
+      "destination": "/ar/",
+      "statusCode": 302
+    },
+    {
+      "source": "/en",
+      "destination": "/en/",
+      "statusCode": 302
     }
   ]
 }
