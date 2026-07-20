@@ -1,0 +1,4 @@
+/ar/index.html (Arabic - main)
+/en/index.html (English)
+/ar/about.html
+/en/about.html
