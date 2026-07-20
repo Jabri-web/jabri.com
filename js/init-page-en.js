@@ -1,28 +1,31 @@
 // js/init-page-en.js
-// This loads English header and footer from the /en/ folder
+// Loads English header and footer
 
 async function initPage() {
     try {
         console.log('🔄 Loading English header and footer...');
         
-        // 1️⃣ LOAD ENGLISH HEADER
+        // Load English header
         const headerResponse = await fetch('../en/header.html');
-        if (!headerResponse.ok) {
-            throw new Error(`Header not found (${headerResponse.status})`);
-        }
+        if (!headerResponse.ok) throw new Error(`Header not found (${headerResponse.status})`);
         const headerHTML = await headerResponse.text();
         
         const parser = new DOMParser();
         const headerDoc = parser.parseFromString(headerHTML, 'text/html');
         
+        // Extract head content
         let headContent = headerDoc.head.innerHTML;
+        
+        // Remove duplicate title
         const titleMatch = headContent.match(/<title>.*?<\/title>/);
         if (titleMatch) {
             headContent = headContent.replace(titleMatch[0], '');
         }
         
+        // Inject header content
         document.head.insertAdjacentHTML('beforeend', headContent);
         
+        // Handle body content
         const headerBodyContent = headerDoc.body.innerHTML;
         if (headerBodyContent.trim()) {
             const container = document.createElement('div');
@@ -32,6 +35,7 @@ async function initPage() {
             container.innerHTML = headerBodyContent;
         }
         
+        // Execute scripts
         const scripts = document.querySelectorAll('#header-body-content script');
         scripts.forEach(script => {
             const newScript = document.createElement('script');
@@ -45,11 +49,9 @@ async function initPage() {
         
         console.log('✅ English header loaded');
         
-        // 2️⃣ LOAD ENGLISH FOOTER
+        // Load English footer
         const footerResponse = await fetch('../en/footer.html');
-        if (!footerResponse.ok) {
-            throw new Error(`Footer not found (${footerResponse.status})`);
-        }
+        if (!footerResponse.ok) throw new Error(`Footer not found (${footerResponse.status})`);
         const footerHTML = await footerResponse.text();
         const footerDoc = parser.parseFromString(footerHTML, 'text/html');
         
@@ -57,26 +59,20 @@ async function initPage() {
         if (footerPlaceholder) {
             footerPlaceholder.outerHTML = footerDoc.body.innerHTML;
             console.log('✅ English footer loaded');
+            document.dispatchEvent(new Event('footerLoaded'));
         }
         
-        // Set English as default
-        document.body.classList.add('en');
-        document.body.classList.remove('ar');
-        document.documentElement.lang = 'en';
-        document.documentElement.dir = 'ltr';
-        
-        // Update language content
-        if (typeof updateHeadLang === 'function') {
-            updateHeadLang();
-        }
-        if (typeof updateFooterLang === 'function') {
-            updateFooterLang();
+        // Set English as default (if not set by language switcher)
+        if (!document.body.classList.contains('ar')) {
+            document.body.classList.add('en');
+            document.documentElement.lang = 'en';
+            document.documentElement.dir = 'ltr';
         }
         
         console.log('🎉 English page ready!');
         
     } catch (error) {
-        console.error('❌ Error:', error);
+        console.error('❌ Error loading English:', error);
     }
 }
 
