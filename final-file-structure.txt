@@ -14,3 +14,16 @@
     ├── 📄 init-page-ar.js
     ├── 📄 init-page-en.js
     └── 📄 language-switcher.js
+
+
+File Purpose Status
+index.html (root) Original working version ✅ KEEP AS IS
+ar/index.html Clean Arabic version ✅ Created
+en/index.html Clean English version ✅ Created
+ar/header.html Arabic meta tags ✅ From your real header
+en/header.html English meta tags ✅ From your real header
+ar/footer.html Arabic footer ✅ From your real footer
+en/footer.html English footer ✅ From your real footer
+
+
+
