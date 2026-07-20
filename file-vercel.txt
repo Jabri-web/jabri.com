@@ -1,0 +1,13 @@
+https://jabri-com.vercel.app/
+├── /ar/ → Arabic version (primary)
+│ ├── index.html
+│ └── about.html
+├── /en/ → English version
+│ ├── index.html
+│ ├── about.html
+│ ├── header-en.html
+│ └── footer-en.html
+├── /Image/ → Images
+├── /js/ → JavaScript
+├── header.html → Arabic header
+└── footer.html → Arabic footer
