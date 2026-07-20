@@ -1,0 +1,16 @@
+📁 project/
+├── 📁 ar/
+│   ├── 📄 index.html
+│   ├── 📄 about.html
+│   ├── 📄 header.html    ✅ (your real header - Arabic)
+│   └── 📄 footer.html    ✅ (your real footer - Arabic)
+├── 📁 en/
+│   ├── 📄 index.html
+│   ├── 📄 about.html
+│   ├── 📄 header.html    ✅ (English version)
+│   └── 📄 footer.html    ✅ (English version)
+├── 📁 Image/
+└── 📁 js/
+    ├── 📄 init-page-ar.js
+    ├── 📄 init-page-en.js
+    └── 📄 language-switcher.js
