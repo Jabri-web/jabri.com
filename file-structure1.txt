@@ -1,0 +1,7 @@
+📁 project/
+├── 📄 index.html (Both languages in one file)
+├── 📄 about.html (Both languages in one file)
+├── 📄 header.html (Shared)
+├── 📄 footer.html (Shared)
+└── 📁 js/
+└── 📄 init-page.js
