@@ -4,14 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
+    <!-- Page Title (will be enhanced by header) -->
     <title>الرئيسية - واحة الجبري</title>
     
-    <link rel="alternate" hreflang="ar" href="../ar/index.html" />
-    <link rel="alternate" hreflang="en" href="../en/index.html" />
+    <!-- SEO - Page specific -->
+    <meta name="description" content="الصفحة الرئيسية لواحة الجبري - تراث اليمن العريق والأبحاث العلمية في الرياضيات والفيزياء النظرية">
     
+    <!-- Language alternates for SEO -->
+    <link rel="alternate" hreflang="ar" href="https://jabri-com.vercel.app/ar/" />
+    <link rel="alternate" hreflang="en" href="https://jabri-com.vercel.app/en/" />
+    
+    <!-- Load Arabic header and footer -->
     <script src="../js/init-page-ar.js" defer></script>
     
     <style>
+        /* Reset */
         * {
             margin: 0;
             padding: 0;
@@ -27,7 +34,7 @@
             flex-direction: column;
         }
         
-        /* Language Switch Button - Floating */
+        /* Language Switch Button */
         .language-switch {
             position: fixed;
             top: 20px;
@@ -82,15 +89,19 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 3rem 1.5rem;
+            padding: 4rem 1.5rem;
             background: linear-gradient(135deg, #0b0b16 0%, #1a1a32 100%);
-            min-height: 60vh;
+            min-height: 70vh;
         }
         
         .hero-content {
-            max-width: 800px;
+            max-width: 900px;
             text-align: center;
-            color: #d0d0ea;
+        }
+        
+        .hero-content .logo {
+            font-size: 4rem;
+            margin-bottom: 1rem;
         }
         
         .hero-content h1 {
@@ -102,8 +113,8 @@
             background-clip: text;
         }
         
-        .hero-content p {
-            font-size: 1.2rem;
+        .hero-content .subtitle {
+            font-size: 1.3rem;
             line-height: 1.8;
             color: #b0b0d0;
             margin-bottom: 1rem;
@@ -111,76 +122,29 @@
         
         .hero-content .highlight {
             color: #6ae3ff;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             font-weight: bold;
+            background: rgba(106, 227, 255, 0.08);
+            padding: 10px 24px;
+            border-radius: 30px;
+            display: inline-block;
+            margin: 0.5rem 0 1.5rem;
+            border: 1px solid rgba(106, 227, 255, 0.15);
         }
         
         .btn-primary {
             display: inline-block;
-            padding: 12px 30px;
+            padding: 14px 36px;
             background: #6ae3ff;
             color: #0b0b16;
             text-decoration: none;
             border-radius: 30px;
             font-weight: bold;
+            font-size: 1.05rem;
             transition: all 0.3s ease;
-            margin-top: 1.5rem;
+            margin-top: 1rem;
         }
         
         .btn-primary:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(106, 227, 255, 0.3);
-        }
-        
-        /* Responsive */
-        @media (max-width: 600px) {
-            .language-switch {
-                top: 10px;
-                padding: 4px 8px;
-            }
-            body.ar .language-switch {
-                left: 10px;
-            }
-            body.en .language-switch {
-                right: 10px;
-            }
-            .language-switch button {
-                padding: 4px 10px;
-                font-size: 0.75rem;
-            }
-            .hero-content h1 {
-                font-size: 2rem;
-            }
-            .hero-content p {
-                font-size: 1rem;
-            }
-        }
-    </style>
-</head>
-<body>
-    
-    <!-- Language Switch -->
-    <div class="language-switch">
-        <button id="lang-ar" class="active" onclick="switchLanguage('ar')">🇸🇦 عربي</button>
-        <button id="lang-en" onclick="switchLanguage('en')">🇬🇧 English</button>
-    </div>
-    
-    <!-- Page Content -->
-    <section class="hero-section">
-        <div class="hero-content">
-            <h1>🌿 واحة الجبري</h1>
-            <p>
-                منصة توثيق تراث اليمن العريق والأبحاث العلمية في الرياضيات والفيزياء النظرية.
-            </p>
-            <p class="highlight">
-                نظرية السندباد الموحدة (Z+C+A=1)
-            </p>
-            <a href="about.html" class="btn-primary">تعرف على الباحث →</a>
-        </div>
-    </section>
-    
-    <!-- Footer Placeholder -->
-    <div id="footer-placeholder"></div>
-    
-</body>
-</html>
+            box-shadow: 0 8px 30
