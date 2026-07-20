@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>الرئيسية - واحة الجبري | Heaven Al-Jabri</title>
+    <meta name="description" content="الصفحة الرئيسية لواحة الجبري - تراث اليمن العريق والأبحاث العلمية">
+    
+    <!-- Language alternates for SEO -->
+    <link rel="alternate" hreflang="ar" href="index.html" />
+    <link rel="alternate" hreflang="en" href="../en/index.html" />
+    
+    <!-- Load Arabic header and footer -->
+    <script src="../js/init-page-ar.js" defer></script>
+    
+    <style>
+        /* Language Switch */
+        .language-switch {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            background: #1a1a32;
+            padding: 8px 16px;
+            border-radius: 30px;
+            border: 1px solid #2a2a4e;
+            display: flex;
+            gap: 8px;
+        }
+        .language-switch a {
+            color: #d0d0ea;
+            text-decoration: none;
+            padding: 4px 12px;
+            border-radius: 20px;
+            transition: 0.3s;
+            font-size: 0.9rem;
+        }
+        .language-switch a.active {
+            background: #6ae3ff;
+            color: #0b0b16;
+        }
+        .language-switch a:hover {
+            background: #2a2a4e;
+        }
+        
+        .hero-section {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem 1.5rem;
+            background: linear-gradient(135deg, #0b0b16 0%, #1a1a32 100%);
+        }
+        .hero-content {
+            max-width: 800px;
+            text-align: center;
+            color: #d0d0ea;
+        }
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #6ae3ff, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero-content p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #b0b0d0;
+        }
+        .btn-primary {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #6ae3ff;
+            color: #0b0b16;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: 0.3s;
+            margin-top: 1.5rem;
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(106, 227, 255, 0.3);
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Language Switch -->
+    <div class="language-switch">
+        <a href="index.html" class="active">🇸🇦 عربي</a>
+        <a href="../en/index.html">🇬🇧 English</a>
+    </div>
+    
+    <!-- Page Content -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1>🌿 واحة الجبري</h1>
+            <p>
+                منصة توثيق تراث اليمن العريق والأبحاث العلمية في الرياضيات والفيزياء النظرية.
+            </p>
+            <p style="color: #6ae3ff; font-size: 1.1rem; margin-top: 0.5rem;">
+                <strong>نظرية السندباد الموحدة (Z+C+A=1)</strong>
+            </p>
+            <a href="about.html" class="btn-primary">تعرف على الباحث →</a>
+        </div>
+    </section>
+    
+    <!-- Footer Placeholder -->
+    <div id="footer-placeholder"></div>
+    
+</body>
+</html>
