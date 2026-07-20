@@ -109,42 +109,5 @@ data-en="Al-Jabri Oasis: Platform for documenting ancient Yemeni heritage and sc
 }
 </script>
 
-<script>
-function updateHeadLang(){
-  const isEnglish = document.body.classList.contains('en');
-  const title = document.querySelector('title');
-  if(title) title.textContent = isEnglish ? title.getAttribute('data-en') : title.getAttribute('data-ar');
-  document.querySelectorAll('.meta-desc, .og-title, .og-desc, .tw-title, .tw-desc').forEach(el=>{
-    if(!el) return;
-    el.setAttribute('content', isEnglish ? el.getAttribute('data-en') : el.getAttribute('data-ar'));
-  });
-}
-
-// Expose functions globally
-window.updateHeadLang = updateHeadLang;
-
-const originalToggleLang = window.toggleLang;
-window.toggleLang = function() {
-  if(originalToggleLang) originalToggleLang();
-  updateHeadLang();
-  if(typeof updateFooterLang === 'function') updateFooterLang();
-}
-
-// Load saved language preference
-document.addEventListener('DOMContentLoaded', function() {
-  const savedLang = localStorage.getItem('preferred-language') || 'ar';
-  if (savedLang === 'en') {
-    document.body.classList.remove('ar');
-    document.body.classList.add('en');
-    document.documentElement.lang = 'en';
-    document.documentElement.dir = 'ltr';
-  } else {
-    document.body.classList.remove('en');
-    document.body.classList.add('ar');
-    document.documentElement.lang = 'ar';
-    document.documentElement.dir = 'rtl';
-  }
-  updateHeadLang();
-  if (typeof updateFooterLang === 'function') updateFooterLang();
-});
-</script>
+<!-- Load language switcher first -->
+<script src="../js/language-switcher.js" defer></script>
