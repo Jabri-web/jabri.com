@@ -236,8 +236,8 @@
     
     <!-- Language Switch -->
     <div class="lang-switch">
-        <button id="lang-ar" class="active" onclick="switchLanguage('ar')">🇸🇦 عربي</button>
-        <button id="lang-en" onclick="switchLanguage('en')">🇬🇧 English</button>
+        <button id="lang-ar" class="active" onclick="window.toggleLang()">🇸🇦 عربي</button>
+        <button id="lang-en" onclick="window.toggleLang()">🇬🇧 English</button>
     </div>
     
     <!-- Header -->
@@ -460,37 +460,7 @@
     <!-- Footer Placeholder -->
     <div id="footer-placeholder"></div>
     
-    <script>
-        // Language switching function
-        function switchLanguage(lang) {
-            // Update body class
-            document.body.classList.remove('ar', 'en');
-            document.body.classList.add(lang);
-            
-            // Update HTML attributes
-            document.documentElement.lang = lang;
-            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
-            
-            // Update button states
-            document.getElementById('lang-ar').classList.toggle('active', lang === 'ar');
-            document.getElementById('lang-en').classList.toggle('active', lang === 'en');
-            
-            // Store preference
-            localStorage.setItem('preferred-language', lang);
-            
-            // Update head and footer if functions exist
-            if (typeof updateHeadLang === 'function') updateHeadLang();
-            if (typeof updateFooterLang === 'function') updateFooterLang();
-            
-            console.log(`🌐 Language switched to: ${lang}`);
-        }
-        
-        // Load saved language preference
-        document.addEventListener('DOMContentLoaded', function() {
-            const savedLang = localStorage.getItem('preferred-language') || 'ar';
-            switchLanguage(savedLang);
-        });
-    </script>
+    <!-- No need for local language script – header handles it all -->
     
 </body>
 </html>
