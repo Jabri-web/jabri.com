@@ -694,6 +694,72 @@
 </script>
     
     <!--- end of manuall footer
+<!-- هذا يشغل زر اللغه
+
+<!-- ====== سكريبت تشغيل اللغة ====== -->
+<script>
+    // دالة تحديث الفوتر (موجودة بالفعل في الفوتر)
+    // لكننا نضمن أنها تعمل عند تغيير اللغة
+    
+    // إعادة تعريف toggleLang لاستدعاء updateFooterLang
+    window.toggleLang = function() {
+        const currentPath = window.location.pathname;
+        const isEnglishPath = currentPath.startsWith('/en/') || currentPath === '/en';
+        const currentLang = document.documentElement.lang;
+        const newLang = currentLang === 'en' ? 'ar' : 'en';
+        
+        let newPath;
+        if (newLang === 'en' && !isEnglishPath) {
+            newPath = '/en' + (currentPath === '/' ? '' : currentPath);
+        } else if (newLang === 'ar' && isEnglishPath) {
+            newPath = currentPath.replace(/^\/en/, '') || '/';
+        } else {
+            // تحديث الواجهة بدون إعادة توجيه
+            applyLanguage(newLang);
+            return;
+        }
+        
+        localStorage.setItem('preferred-language', newLang);
+        window.location.href = newPath;
+    };
+    
+    // دالة تطبيق اللغة
+    function applyLanguage(lang) {
+        document.documentElement.lang = lang;
+        document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+        document.body.classList.remove('ar', 'en');
+        document.body.classList.add(lang);
+        
+        // تحديث الأزرار
+        const langAr = document.getElementById('lang-ar');
+        const langEn = document.getElementById('lang-en');
+        if (langAr) langAr.classList.toggle('active', lang === 'ar');
+        if (langEn) langEn.classList.toggle('active', lang === 'en');
+        
+        // تحديث الهيدر (meta tags)
+        if (typeof updateHeadLang === 'function') {
+            updateHeadLang();
+        }
+        
+        // ====== تحديث الفوتر ======
+        if (typeof updateFooterLang === 'function') {
+            updateFooterLang();
+        }
+        
+        localStorage.setItem('preferred-language', lang);
+        console.log(`✅ تم تطبيق اللغة: ${lang}`);
+    }
+    
+    // جعل الدوال متاحة عالمياً
+    window.applyLanguage = applyLanguage;
+    
+    // تحميل اللغة المحفوظة عند بدء الصفحة
+    document.addEventListener('DOMContentLoaded', function() {
+        const savedLang = localStorage.getItem('preferred-language') || 'ar';
+        applyLanguage(savedLang);
+    });
+</script>
+<!--- نهاية زر اللعة
     
 </body>
 </html>
