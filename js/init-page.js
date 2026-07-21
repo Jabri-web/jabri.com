@@ -1,28 +1,37 @@
-// js/init-page.js - تحميل الهيدر والفوتر من الجذر
+// js/init-page.js - نسخة ذكية تكتشف المسار تلقائياً
 
 async function initPage() {
     console.log('🔄 [init-page] بدء تحميل الهيدر والفوتر...');
     
     try {
-        // 1️⃣ تحميل الهيدر من الجذر
-        console.log('📄 [init-page] جاري تحميل الهيدر...');
-        const headerRes = await fetch('/header.html');
+        // 🔍 اكتشاف المسار الصحيح للهيدر والفوتر
+        const isRoot = window.location.pathname === '/' || 
+                      window.location.pathname === '/index.html' ||
+                      window.location.pathname.endsWith('/index.html');
+        
+        // تحديد المسار الصحيح
+        const basePath = isRoot ? '' : '..';
+        const headerUrl = `${basePath}/header.html`;
+        const footerUrl = `${basePath}/footer.html`;
+        
+        console.log(`📍 المسار: ${basePath || 'الجذر'}`);
+        console.log(`📄 تحميل الهيدر من: ${headerUrl}`);
+        
+        // 1️⃣ تحميل الهيدر
+        const headerRes = await fetch(headerUrl);
         if (!headerRes.ok) {
             throw new Error(`الهيدر غير موجود (${headerRes.status})`);
         }
         const headerHTML = await headerRes.text();
-        console.log('✅ [init-page] تم تحميل الهيدر بنجاح');
+        console.log('✅ تم تحميل الهيدر بنجاح');
         
         const parser = new DOMParser();
         const headerDoc = parser.parseFromString(headerHTML, 'text/html');
-        
-        // إضافة محتوى الهيدر إلى <head>
         document.head.insertAdjacentHTML('beforeend', headerDoc.head.innerHTML);
-        console.log('✅ [init-page] تم إضافة محتوى الهيدر');
         
         // تنفيذ سكريبتات الهيدر
         const headerScripts = headerDoc.querySelectorAll('script');
-        headerScripts.forEach((script, index) => {
+        headerScripts.forEach(script => {
             const newScript = document.createElement('script');
             if (script.src) {
                 newScript.src = script.src;
@@ -30,29 +39,27 @@ async function initPage() {
                 newScript.textContent = script.textContent;
             }
             document.head.appendChild(newScript);
-            console.log(`✅ [init-page] تم تنفيذ سكريبت الهيدر ${index + 1}`);
         });
         
-        // 2️⃣ تحميل الفوتر من الجذر
-        console.log('📄 [init-page] جاري تحميل الفوتر...');
-        const footerRes = await fetch('/footer.html');
+        // 2️⃣ تحميل الفوتر
+        console.log(`📄 تحميل الفوتر من: ${footerUrl}`);
+        const footerRes = await fetch(footerUrl);
         if (!footerRes.ok) {
             throw new Error(`الفوتر غير موجود (${footerRes.status})`);
         }
         const footerHTML = await footerRes.text();
-        console.log('✅ [init-page] تم تحميل الفوتر بنجاح');
+        console.log('✅ تم تحميل الفوتر بنجاح');
         
         const footerDoc = parser.parseFromString(footerHTML, 'text/html');
         
-        // وضع الفوتر في المكان المخصص
         const footerPlaceholder = document.getElementById('footer-placeholder');
         if (footerPlaceholder) {
             footerPlaceholder.outerHTML = footerDoc.body.innerHTML;
-            console.log('✅ [init-page] تم وضع الفوتر في المكان المخصص');
+            console.log('✅ تم وضع الفوتر في المكان المخصص');
             
             // تنفيذ سكريبتات الفوتر
             const footerScripts = footerDoc.querySelectorAll('script');
-            footerScripts.forEach((script, index) => {
+            footerScripts.forEach(script => {
                 const newScript = document.createElement('script');
                 if (script.src) {
                     newScript.src = script.src;
@@ -60,20 +67,15 @@ async function initPage() {
                     newScript.textContent = script.textContent;
                 }
                 document.body.appendChild(newScript);
-                console.log(`✅ [init-page] تم تنفيذ سكريبت الفوتر ${index + 1}`);
             });
             
-            // إعلام بأن الفوتر تم تحميله
             document.dispatchEvent(new Event('footerLoaded'));
-            console.log('✅ [init-page] تم إرسال حدث footerLoaded');
-        } else {
-            console.warn('⚠️ [init-page] عنصر footer-placeholder غير موجود');
         }
         
-        console.log('🎉 [init-page] تم تحميل الهيدر والفوتر بنجاح!');
+        console.log('🎉 تم تحميل الهيدر والفوتر بنجاح!');
         
     } catch (error) {
-        console.error('❌ [init-page] خطأ في تحميل المكونات:', error);
+        console.error('❌ خطأ:', error);
         const footerPlaceholder = document.getElementById('footer-placeholder');
         if (footerPlaceholder) {
             footerPlaceholder.innerHTML = `
@@ -86,7 +88,7 @@ async function initPage() {
     }
 }
 
-// تشغيل التحميل عند تحميل الصفحة
+// تشغيل التحميل
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initPage);
 } else {
