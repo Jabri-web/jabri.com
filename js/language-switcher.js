@@ -6,37 +6,44 @@
     
     // Language state
     let currentLang = 'ar'; // 'ar' or 'en'
+    let isInitialized = false;
     
-    // DOM elements to update
-    const elements = {
-        html: document.documentElement,
-        body: document.body,
-        title: document.querySelector('title'),
-        metaDesc: document.querySelector('.meta-desc'),
-        ogTitle: document.querySelector('.og-title'),
-        ogDesc: document.querySelector('.og-desc'),
-        twTitle: document.querySelector('.tw-title'),
-        twDesc: document.querySelector('.tw-desc'),
-        footer: document.getElementById('site-footer'),
-        searchTitle: document.getElementById('searchTitle'),
-        copyright: document.getElementById('copyright'),
-        footerTexts: () => document.querySelectorAll('#site-footer .txt'),
-        langAr: document.getElementById('lang-ar'),
-        langEn: document.getElementById('lang-en'),
-        langToggle: document.getElementById('lang-toggle')
-    };
+    // Get DOM elements with safe fallbacks
+    function getElements() {
+        return {
+            html: document.documentElement,
+            body: document.body,
+            title: document.querySelector('title'),
+            metaDesc: document.querySelector('.meta-desc'),
+            ogTitle: document.querySelector('.og-title'),
+            ogDesc: document.querySelector('.og-desc'),
+            twTitle: document.querySelector('.tw-title'),
+            twDesc: document.querySelector('.tw-desc'),
+            footer: document.getElementById('site-footer'),
+            searchTitle: document.getElementById('searchTitle'),
+            copyright: document.getElementById('copyright'),
+            footerTexts: () => document.querySelectorAll('#site-footer .txt'),
+            langAr: document.getElementById('lang-ar'),
+            langEn: document.getElementById('lang-en'),
+            langToggle: document.getElementById('lang-toggle')
+        };
+    }
     
     // Update HTML direction and language attributes
-    function updateDocumentAttributes(lang) {
+    function updateDocumentAttributes(lang, elements) {
         const isEnglish = lang === 'en';
-        elements.html.lang = lang;
-        elements.html.dir = isEnglish ? 'ltr' : 'rtl';
-        elements.body.classList.remove('ar', 'en');
-        elements.body.classList.add(lang);
+        if (elements.html) {
+            elements.html.lang = lang;
+            elements.html.dir = isEnglish ? 'ltr' : 'rtl';
+        }
+        if (elements.body) {
+            elements.body.classList.remove('ar', 'en');
+            elements.body.classList.add(lang);
+        }
     }
     
     // Update HEAD meta tags
-    function updateHeadContent(lang) {
+    function updateHeadContent(lang, elements) {
         const isEnglish = lang === 'en';
         
         // Update title
@@ -66,7 +73,7 @@
     }
     
     // Update FOOTER content
-    function updateFooterContent(lang) {
+    function updateFooterContent(lang, elements) {
         const isEnglish = lang === 'en';
         
         // Update footer direction
@@ -89,27 +96,27 @@
         }
         
         // Update all text elements with data attributes
-        elements.footerTexts().forEach(el => {
-            const newText = isEnglish 
-                ? el.getAttribute('data-en') 
-                : el.getAttribute('data-ar');
-            if (newText) el.textContent = newText;
-        });
+        const texts = elements.footerTexts();
+        if (texts) {
+            texts.forEach(el => {
+                const newText = isEnglish 
+                    ? el.getAttribute('data-en') 
+                    : el.getAttribute('data-ar');
+                if (newText) el.textContent = newText;
+            });
+        }
     }
     
     // Update language switch button states
-    function updateButtonStates(lang) {
+    function updateButtonStates(lang, elements) {
         const isEnglish = lang === 'en';
         
-        // Update active states
         if (elements.langAr) {
             elements.langAr.classList.toggle('active', !isEnglish);
         }
         if (elements.langEn) {
             elements.langEn.classList.toggle('active', isEnglish);
         }
-        
-        // Update toggle button text
         if (elements.langToggle) {
             elements.langToggle.textContent = isEnglish ? '🇸🇦 عربي' : '🇬🇧 English';
         }
@@ -117,15 +124,17 @@
     
     // Main language switch function
     function switchLanguage(lang) {
-        if (!lang || lang === currentLang) return;
+        if (!lang || (lang !== 'ar' && lang !== 'en')) return;
+        if (lang === currentLang && isInitialized) return;
         
         currentLang = lang;
+        const elements = getElements();
         
         // Update everything
-        updateDocumentAttributes(lang);
-        updateHeadContent(lang);
-        updateFooterContent(lang);
-        updateButtonStates(lang);
+        updateDocumentAttributes(lang, elements);
+        updateHeadContent(lang, elements);
+        updateFooterContent(lang, elements);
+        updateButtonStates(lang, elements);
         
         // Store preference
         try {
@@ -134,6 +143,7 @@
             // Ignore localStorage errors
         }
         
+        isInitialized = true;
         console.log(`🌐 Language switched to: ${lang}`);
         
         // Dispatch custom event for any other components
@@ -159,33 +169,34 @@
     // Initialize language
     function initLanguage() {
         const savedLang = loadSavedLanguage();
+        currentLang = savedLang;
+        const elements = getElements();
         
         // Set language
-        currentLang = savedLang;
-        updateDocumentAttributes(savedLang);
-        updateHeadContent(savedLang);
-        updateButtonStates(savedLang);
+        updateDocumentAttributes(savedLang, elements);
+        updateHeadContent(savedLang, elements);
+        updateButtonStates(savedLang, elements);
         
-        // Footer might not be loaded yet, will be updated when loaded
-        // We'll handle this with a mutation observer or after footer loads
-        
-        // Re-apply after DOM is fully ready
-        if (document.readyState === 'complete') {
-            updateFooterContent(savedLang);
-        } else {
-            document.addEventListener('DOMContentLoaded', function() {
-                updateFooterContent(savedLang);
-            });
+        // Update footer if it exists
+        if (document.getElementById('site-footer')) {
+            updateFooterContent(savedLang, elements);
         }
         
+        isInitialized = true;
         console.log(`🌐 Language initialized: ${savedLang}`);
     }
     
     // Expose functions globally
     window.switchLanguage = switchLanguage;
     window.getCurrentLanguage = function() { return currentLang; };
-    window.updateHeadLang = function() { updateHeadContent(currentLang); };
-    window.updateFooterLang = function() { updateFooterContent(currentLang); };
+    window.updateHeadLang = function() { 
+        const elements = getElements();
+        updateHeadContent(currentLang, elements); 
+    };
+    window.updateFooterLang = function() { 
+        const elements = getElements();
+        updateFooterContent(currentLang, elements); 
+    };
     window.toggleLang = function() {
         switchLanguage(currentLang === 'ar' ? 'en' : 'ar');
     };
@@ -199,7 +210,20 @@
     
     // Also re-run when footer is dynamically loaded
     document.addEventListener('footerLoaded', function() {
-        updateFooterContent(currentLang);
+        const elements = getElements();
+        updateFooterContent(currentLang, elements);
+        console.log('🔄 Footer updated after dynamic load');
     });
     
+    // Also re-run when DOM is fully loaded (for safety)
+    document.addEventListener('DOMContentLoaded', function() {
+        if (!isInitialized) {
+            initLanguage();
+        }
+        // Ensure footer is updated
+        const elements = getElements();
+        updateFooterContent(currentLang, elements);
+    });
+    
+    console.log('✅ Language switcher loaded successfully');
 })();
