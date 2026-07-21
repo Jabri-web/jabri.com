@@ -697,33 +697,9 @@
 <!-- هذا يشغل زر اللغه
 
 <!-- ====== سكريبت تشغيل اللغة ====== -->
+<<!-- ====== سكريبت تشغيل اللغة (النسخة المحسنة) ====== -->
 <script>
-    // دالة تحديث الفوتر (موجودة بالفعل في الفوتر)
-    // لكننا نضمن أنها تعمل عند تغيير اللغة
-    
-    // إعادة تعريف toggleLang لاستدعاء updateFooterLang
-    window.toggleLang = function() {
-        const currentPath = window.location.pathname;
-        const isEnglishPath = currentPath.startsWith('/en/') || currentPath === '/en';
-        const currentLang = document.documentElement.lang;
-        const newLang = currentLang === 'en' ? 'ar' : 'en';
-        
-        let newPath;
-        if (newLang === 'en' && !isEnglishPath) {
-            newPath = '/en' + (currentPath === '/' ? '' : currentPath);
-        } else if (newLang === 'ar' && isEnglishPath) {
-            newPath = currentPath.replace(/^\/en/, '') || '/';
-        } else {
-            // تحديث الواجهة بدون إعادة توجيه
-            applyLanguage(newLang);
-            return;
-        }
-        
-        localStorage.setItem('preferred-language', newLang);
-        window.location.href = newPath;
-    };
-    
-    // دالة تطبيق اللغة
+    // دالة تطبيق اللغة (بدون إعادة توجيه)
     function applyLanguage(lang) {
         document.documentElement.lang = lang;
         document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
@@ -741,7 +717,7 @@
             updateHeadLang();
         }
         
-        // ====== تحديث الفوتر ======
+        // تحديث الفوتر
         if (typeof updateFooterLang === 'function') {
             updateFooterLang();
         }
@@ -749,6 +725,14 @@
         localStorage.setItem('preferred-language', lang);
         console.log(`✅ تم تطبيق اللغة: ${lang}`);
     }
+    
+    // ====== دالة تبديل اللغة (بدون إعادة توجيه - تعمل دائماً) ======
+    window.toggleLang = function() {
+        const currentLang = document.documentElement.lang || 'ar';
+        const newLang = currentLang === 'en' ? 'ar' : 'en';
+        applyLanguage(newLang);
+        console.log(`🔄 تم تبديل اللغة من ${currentLang} إلى ${newLang}`);
+    };
     
     // جعل الدوال متاحة عالمياً
     window.applyLanguage = applyLanguage;
