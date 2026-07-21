@@ -1,6 +1,132 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
+    
+    
+    
+    <!-- اضيف الهيدر يدوي حتى تشتغل ال fetch
+    
+    <script>
+    // ====== UPDATE HEAD META TAGS ======
+    function updateHeadLang() {
+        const isEnglish = document.documentElement.lang === 'en';
+        console.log('🔄 updateHeadLang called, isEnglish:', isEnglish);
+        
+        // Update title
+        const title = document.querySelector('title');
+        if (title) {
+            const newTitle = isEnglish ? title.getAttribute('data-en') : title.getAttribute('data-ar');
+            if (newTitle) title.textContent = newTitle;
+        }
+        
+        // Update meta descriptions
+        document.querySelectorAll('.meta-desc, .og-title, .og-desc, .tw-title, .tw-desc').forEach(el => {
+            const newContent = isEnglish ? el.getAttribute('data-en') : el.getAttribute('data-ar');
+            if (newContent) el.setAttribute('content', newContent);
+        });
+    }
+    window.updateHeadLang = updateHeadLang;
+    
+    // ====== UPDATE FOOTER (if loaded) ======
+    function updateFooterIfExists() {
+        if (typeof updateFooterLang === 'function') {
+            updateFooterLang();
+        }
+    }
+    
+    // ====== APPLY LANGUAGE TO UI (no redirect) ======
+    function applyLanguage(lang) {
+        document.documentElement.lang = lang;
+        document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+        document.body.classList.remove('ar', 'en');
+        document.body.classList.add(lang);
+        
+        // Update head
+        if (typeof updateHeadLang === 'function') updateHeadLang();
+        
+        // Update footer
+        if (typeof updateFooterLang === 'function') updateFooterLang();
+        
+        // Update button states
+        const langAr = document.getElementById('lang-ar');
+        const langEn = document.getElementById('lang-en');
+        if (langAr) langAr.classList.toggle('active', lang === 'ar');
+        if (langEn) langEn.classList.toggle('active', lang === 'en');
+        
+        // Save preference (for fallback)
+        localStorage.setItem('preferred-language', lang);
+        console.log(`✅ Language applied: ${lang}`);
+    }
+    
+    // ====== TOGGLE LANGUAGE (with URL redirect) ======
+    window.toggleLang = function() {
+        const currentPath = window.location.pathname;
+        const isEnglishPath = currentPath.startsWith('/en/') || currentPath === '/en';
+        const currentLang = document.documentElement.lang;
+        
+        // Determine new language
+        const newLang = currentLang === 'en' ? 'ar' : 'en';
+        
+        // Build new path
+        let newPath;
+        if (newLang === 'en' && !isEnglishPath) {
+            // Add /en/ prefix
+            newPath = '/en' + (currentPath === '/' ? '' : currentPath);
+        } else if (newLang === 'ar' && isEnglishPath) {
+            // Remove /en/ prefix
+            newPath = currentPath.replace(/^\/en/, '') || '/';
+        } else {
+            // Same language, just update UI (no redirect)
+            applyLanguage(newLang);
+            return;
+        }
+        
+        // Save preference before redirect
+        localStorage.setItem('preferred-language', newLang);
+        
+        // Redirect
+        window.location.href = newPath;
+    };
+    
+    // ====== INITIALIZE LANGUAGE FROM URL ======
+    document.addEventListener('DOMContentLoaded', function() {
+        const path = window.location.pathname;
+        const isEnglishPath = path.startsWith('/en/') || path === '/en';
+        
+        // 1. URL takes priority
+        let lang = isEnglishPath ? 'en' : 'ar';
+        
+        // 2. If root path, fallback to localStorage
+        if (!isEnglishPath && path === '/') {
+            const saved = localStorage.getItem('preferred-language');
+            if (saved) lang = saved;
+        }
+        
+        // 3. Apply language
+        applyLanguage(lang);
+        
+        // 4. If URL has /en/ but language is Arabic (inconsistent), redirect
+        if (isEnglishPath && lang === 'ar') {
+            window.location.href = path.replace(/^\/en/, '') || '/';
+            return;
+        }
+        
+        // 5. If URL is root but language is English, redirect to /en/
+        if (!isEnglishPath && lang === 'en' && path === '/') {
+            window.location.href = '/en/';
+            return;
+        }
+        
+        console.log(`🎉 Language initialized to: ${lang} from URL: ${path}`);
+    });
+    
+    // ====== EXPOSE FUNCTIONS GLOBALLY ======
+    window.applyLanguage = applyLanguage;
+    window.updateHeadLang = updateHeadLang;
+</script>
+    
+    
+    <!-- نهاية الهيدر اليدوي
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
