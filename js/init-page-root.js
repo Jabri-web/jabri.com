@@ -1,466 +1,88 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+// js/init-page-root.js
+// تحميل الهيدر والفوتر من الجذر
+
+(async function initPage() {
+  console.log('🔄 [init-page-root] بدء تحميل الهيدر والفوتر...');
+  
+  try {
+    // 1️⃣ تحميل الهيدر
+    console.log('📄 [init-page-root] جاري تحميل الهيدر...');
+    const headerResponse = await fetch('/header.html');
+    if (!headerResponse.ok) {
+      throw new Error(`الهيدر غير موجود (${headerResponse.status})`);
+    }
+    const headerHTML = await headerResponse.text();
+    console.log('✅ [init-page-root] تم تحميل الهيدر بنجاح');
     
-    <!-- Page Title (will be enhanced by header) -->
-    <title>واحة الجبري | Heaven Al-Jabri - تراث اليمن العريق</title>
+    // إضافة محتوى الهيدر إلى الصفحة (مخفي)
+    const headerContainer = document.createElement('div');
+    headerContainer.id = 'header-container';
+    headerContainer.style.display = 'none';
+    document.body.prepend(headerContainer);
+    headerContainer.innerHTML = headerHTML;
     
-    <!-- Page-specific SEO -->
-    <meta name="description" content="واحة الجبري م/ عبدالله الجبري: تراث اليمن العريق، أبحاث رياضيات وفيزياء نظرية. Heaven Al-Jabri by Eng. Abdulla Al-Jabri: Yemeni Heritage, Math & Physics Research.">
+    // تنفيذ سكريبتات الهيدر
+    const headerScripts = headerContainer.querySelectorAll('script');
+    console.log(`📜 [init-page-root] عدد سكريبتات الهيدر: ${headerScripts.length}`);
+    headerScripts.forEach((script, index) => {
+      const newScript = document.createElement('script');
+      if (script.src) {
+        newScript.src = script.src;
+      } else {
+        newScript.textContent = script.textContent;
+      }
+      document.head.appendChild(newScript);
+      console.log(`✅ [init-page-root] تم تنفيذ سكريبت الهيدر ${index + 1}`);
+    });
     
-    <!-- Language alternates for SEO -->
-    <link rel="alternate" hreflang="ar" href="https://jabri-com.vercel.app/" />
-    <link rel="alternate" hreflang="en" href="https://jabri-com.vercel.app/en/" />
-    <link rel="canonical" href="https://jabri-com.vercel.app/" />
+    // 2️⃣ تحميل الفوتر
+    console.log('📄 [init-page-root] جاري تحميل الفوتر...');
+    const footerResponse = await fetch('/footer.html');
+    if (!footerResponse.ok) {
+      throw new Error(`الفوتر غير موجود (${footerResponse.status})`);
+    }
+    const footerHTML = await footerResponse.text();
+    console.log('✅ [init-page-root] تم تحميل الفوتر بنجاح');
     
-    <!-- Favicon -->
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    // وضع الفوتر في المكان المخصص
+    const footerPlaceholder = document.getElementById('footer-placeholder');
+    if (footerPlaceholder) {
+      footerPlaceholder.innerHTML = footerHTML;
+      console.log('✅ [init-page-root] تم وضع الفوتر في المكان المخصص');
+      
+      // تنفيذ سكريبتات الفوتر
+      const footerScripts = footerPlaceholder.querySelectorAll('script');
+      console.log(`📜 [init-page-root] عدد سكريبتات الفوتر: ${footerScripts.length}`);
+      footerScripts.forEach((script, index) => {
+        const newScript = document.createElement('script');
+        if (script.src) {
+          newScript.src = script.src;
+        } else {
+          newScript.textContent = script.textContent;
+        }
+        document.body.appendChild(newScript);
+        console.log(`✅ [init-page-root] تم تنفيذ سكريبت الفوتر ${index + 1}`);
+      });
+      
+      // إعلام بأن الفوتر تم تحميله
+      document.dispatchEvent(new Event('footerLoaded'));
+      console.log('✅ [init-page-root] تم إرسال حدث footerLoaded');
+    } else {
+      console.warn('⚠️ [init-page-root] عنصر footer-placeholder غير موجود');
+    }
     
-    <!-- Load header and footer -->
-    <script src="js/init-page-root.js" defer></script>
+    console.log('🎉 [init-page-root] تم تحميل الهيدر والفوتر بنجاح!');
     
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700&display=swap" rel="stylesheet">
-    
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            background: #0a0a0f;
-            color: #e0e0e0;
-            font-family: 'Cairo', Tahoma, Arial, sans-serif;
-            text-align: center;
-            transition: 0.3s;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        body.en {
-            direction: ltr;
-            font-family: 'Segoe UI', Arial, sans-serif;
-        }
-        
-        /* Language Switch Button */
-        .lang-switch {
-            position: fixed;
-            top: 20px;
-            z-index: 9999;
-            display: flex;
-            gap: 4px;
-            background: #1a1a2e;
-            padding: 6px 12px;
-            border-radius: 30px;
-            border: 1px solid #2a2a4e;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-        }
-        
-        body.ar .lang-switch {
-            left: 20px;
-        }
-        
-        body.en .lang-switch {
-            right: 20px;
-        }
-        
-        .lang-switch button {
-            background: none;
-            border: none;
-            color: #8888bb;
-            padding: 6px 14px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 0.85rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            font-family: inherit;
-        }
-        
-        .lang-switch button:hover {
-            color: #d0d0ea;
-            background: #2a2a4e;
-        }
-        
-        .lang-switch button.active {
-            background: #6ae3ff;
-            color: #0b0b16;
-        }
-        
-        .lang-switch button.active:hover {
-            background: #5ad0f0;
-        }
-        
-        /* Header */
-        .header {
-            background: linear-gradient(135deg, #0a3d62 0%, #1e6f9f 100%);
-            padding: 60px 20px;
-            border-bottom: 3px solid #6ae3ff;
-            position: relative;
-            overflow: hidden;
-            text-align: center;
-        }
-        
-        .header::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: url('Image/Yemen2026.png') center/cover;
-            opacity: 0.1;
-            z-index: 0;
-        }
-        
-        .header-content {
-            position: relative;
-            z-index: 1;
-        }
-        
-        .header img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            border: 4px solid #6ae3ff;
-            box-shadow: 0 0 20px rgba(106, 227, 255, 0.5);
-            margin-bottom: 20px;
-        }
-        
-        .header h1 {
-            font-size: 2.5rem;
-            color: #fff;
-            margin-bottom: 10px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-        }
-        
-        .header .subtitle {
-            font-size: 1.2rem;
-            color: #b8e8ff;
-            margin: 5px 0;
-        }
-        
-        .header .equation {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #6ae3ff;
-            margin-top: 15px;
-        }
-        
-        /* Main Content */
-        .container {
-            flex: 1;
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px;
-            width: 100%;
-        }
-        
-        .section-title {
-            font-size: 2rem;
-            color: #6ae3ff;
-            margin: 40px 0 20px;
-            text-align: center;
-        }
-        
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            margin: 30px 0;
-        }
-        
-        .card {
-            background: #1a1a2e;
-            border: 2px solid #2a2a3e;
-            border-radius: 15px;
-            padding: 25px;
-            text-decoration: none;
-            color: #e0e0e0;
-            transition: 0.3s;
-            display: block;
-            text-align: center;
-        }
-        
-        .card:hover {
-            border-color: #6ae3ff;
-            transform: translateY(-8px);
-            box-shadow: 0 10px 30px rgba(106, 227, 255, 0.2);
-        }
-        
-        .card-icon {
-            font-size: 3rem;
-            margin-bottom: 15px;
-        }
-        
-        .card h3 {
-            color: #6ae3ff;
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-        }
-        
-        .card p {
-            color: #aaa;
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-        
-        /* Language-specific content */
-        .ar-text { display: inline; }
-        .en-text { display: none; }
-        
-        body.en .ar-text { display: none; }
-        body.en .en-text { display: inline; }
-        
-        /* Responsive */
-        @media (max-width: 600px) {
-            .lang-switch {
-                top: 10px;
-                padding: 4px 8px;
-            }
-            body.ar .lang-switch { left: 10px; }
-            body.en .lang-switch { right: 10px; }
-            .lang-switch button {
-                padding: 4px 10px;
-                font-size: 0.75rem;
-            }
-            .header h1 { font-size: 1.8rem; }
-            .header img { width: 80px; height: 80px; }
-            .section-title { font-size: 1.5rem; }
-        }
-    </style>
-</head>
-<body>
-    
-    <!-- Language Switch -->
-    <div class="lang-switch">
-        <button id="lang-ar" class="active" onclick="window.toggleLang()">🇸🇦 عربي</button>
-        <button id="lang-en" onclick="window.toggleLang()">🇬🇧 English</button>
-    </div>
-    
-    <!-- Header -->
-    <header class="header">
-        <div class="header-content">
-            <img src="Image/Jabri-photo.png" alt="م/ عبدالله الجبري">
-            <h1>
-                <span class="ar-text">واحة الجبري</span>
-                <span class="en-text">Heaven Al-Jabri</span>
-            </h1>
-            <p class="subtitle">
-                <span class="ar-text">م/ عبدالله محمد ناصر الجبري</span>
-                <span class="en-text">Eng. Abdulla Mohammed Nasser Al-Jabri</span>
-            </p>
-            <p class="subtitle">
-                <span class="ar-text">باحث في الرياضيات والفيزياء النظرية</span>
-                <span class="en-text">Researcher in Mathematics & Theoretical Physics</span>
-            </p>
-            <div class="equation">Z + C + A = 1</div>
+  } catch (error) {
+    console.error('❌ [init-page-root] خطأ في تحميل المكونات:', error);
+    const footerPlaceholder = document.getElementById('footer-placeholder');
+    if (footerPlaceholder) {
+      footerPlaceholder.innerHTML = `
+        <div style="background: #1a1a2e; color: #888; padding: 2rem; text-align: center; border-top: 1px solid #333;">
+          <p>⚠️ لم يتم تحميل الفوتر. يرجى تحديث الصفحة.</p>
+          <p style="font-size: 12px; color: #666;">خطأ: ${error.message}</p>
         </div>
-    </header>
-    
-    <!-- Main Content -->
-    <div class="container">
-        
-        <!-- Projects Section -->
-        <h2 class="section-title">
-            <span class="ar-text">المشاريع والبوابات</span>
-            <span class="en-text">Projects & Portals</span>
-        </h2>
-        <div class="cards-grid">
-            
-            <a href="Jabri-com-index.html" class="card">
-                <div class="card-icon">🏛️</div>
-                <h3>
-                    <span class="ar-text">الواحة الرئيسية</span>
-                    <span class="en-text">Main Oasis</span>
-                </h3>
-                <p>
-                    <span class="ar-text">بوابة تراث اليمن العريق</span>
-                    <span class="en-text">Yemeni Heritage Gateway</span>
-                </p>
-            </a>
-            
-            <a href="Page1.html" class="card">
-                <div class="card-icon">🗺️</div>
-                <h3>
-                    <span class="ar-text">سندباد اليمن</span>
-                    <span class="en-text">Sindbad Yemen</span>
-                </h3>
-                <p>
-                    <span class="ar-text">رحلة الاكتشاف والمعرفة</span>
-                    <span class="en-text">Journey of Discovery</span>
-                </p>
-            </a>
-            
-            <a href="Page4.html" class="card">
-                <div class="card-icon">🔬</div>
-                <h3>
-                    <span class="ar-text">المكتب والبحوث</span>
-                    <span class="en-text">Office & Research</span>
-                </h3>
-                <p>
-                    <span class="ar-text">أبحاث ريمان ونظرية سندس</span>
-                    <span class="en-text">Riemann & Sundus Theory</span>
-                </p>
-            </a>
-            
-            <a href="Page6.html" class="card">
-                <div class="card-icon">🧪</div>
-                <h3>
-                    <span class="ar-text">مختبر الجبري</span>
-                    <span class="en-text">Jabri Lab</span>
-                </h3>
-                <p>
-                    <span class="ar-text">تجارب وتطبيقات علمية</span>
-                    <span class="en-text">Scientific Experiments</span>
-                </p>
-            </a>
-            
-            <a href="Yemen-library.html" class="card">
-                <div class="card-icon">📚</div>
-                <h3>
-                    <span class="ar-text">مكتبة اليمن</span>
-                    <span class="en-text">Yemen Library</span>
-                </h3>
-                <p>
-                    <span class="ar-text">تراث ومعرفة وتاريخ</span>
-                    <span class="en-text">Heritage & Knowledge</span>
-                </p>
-            </a>
-            
-            <a href="about.html" class="card">
-                <div class="card-icon">👤</div>
-                <h3>
-                    <span class="ar-text">عن المؤلف</span>
-                    <span class="en-text">About Author</span>
-                </h3>
-                <p>
-                    <span class="ar-text">السيرة الذاتية والأعمال</span>
-                    <span class="en-text">CV & Publications</span>
-                </p>
-            </a>
-            
-        </div>
-        
-        <!-- Heritage Section -->
-        <h2 class="section-title">
-            <span class="ar-text">تراث اليمن</span>
-            <span class="en-text">Yemen Heritage</span>
-        </h2>
-        <div class="cards-grid">
-            <a href="Sanaa.html" class="card">
-                <div class="card-icon">🏙️</div>
-                <h3>
-                    <span class="ar-text">صنعاء القديمة</span>
-                    <span class="en-text">Old Sana'a</span>
-                </h3>
-            </a>
-            <a href="Shibam.html" class="card">
-                <div class="card-icon">🏰</div>
-                <h3>
-                    <span class="ar-text">شبام حضرموت</span>
-                    <span class="en-text">Shibam Hadramout</span>
-                </h3>
-            </a>
-            <a href="Soqatra.html" class="card">
-                <div class="card-icon">🏝️</div>
-                <h3>
-                    <span class="ar-text">سقطرى</span>
-                    <span class="en-text">Socotra</span>
-                </h3>
-            </a>
-        </div>
-        
-        <!-- Projects 1→11 Section -->
-        <h2 class="section-title">
-            <span class="ar-text">سندباد اليمن - البوابة العامة 1→11</span>
-            <span class="en-text">Yemen Sindbad - Main Gateway 1→11</span>
-        </h2>
-        <p style="color: #aaa; font-weight: bold; margin-bottom: 20px;">
-            <span class="ar-text">م/عبدالله الجبري</span>
-            <span class="en-text">Eng. Abdulla Al-Jabri</span>
-        </p>
-        
-        <div style="max-width: 900px; margin: 0 auto;">
-            <div style="background: #1a1a1a; border-radius: 12px; border: 2px solid #333; padding: 15px;">
-                <div style="font-size: 18px; font-weight: bold; color: #ff3333; text-align: center; margin-bottom: 12px;">
-                    <span class="ar-text">المشاريع الأساسية 1→11</span>
-                    <span class="en-text">Core Projects 1→11</span>
-                </div>
-                
-                <a href="Page1.html" target="_blank" style="display: flex; justify-content: space-between; align-items: center; width: 100%; margin: 10px 0; padding: 18px; background: #000; color: #fff; font-size: 16px; font-weight: bold; border-radius: 12px; text-decoration: none; transition: 0.3s; border: 2px solid #333;">
-                    <span><span class="ar-text">سندباد اليمن</span><span class="en-text">Sindbad Yemen</span></span>
-                    <span>1</span>
-                </a>
-                <a href="Page2.html" target="_blank" style="display: flex; justify-content: space-between; align-items: center; width: 100%; margin: 10px 0; padding: 18px; background: #000; color: #fff; font-size: 16px; font-weight: bold; border-radius: 12px; text-decoration: none; transition: 0.3s; border: 2px solid #333;">
-                    <span><span class="ar-text">طائر اليمن</span><span class="en-text">Yemen Bird</span></span>
-                    <span>2</span>
-                </a>
-                <a href="Page3.html" target="_blank" style="display: flex; justify-content: space-between; align-items: center; width: 100%; margin: 10px 0; padding: 18px; background: #000; color: #fff; font-size: 16px; font-weight: bold; border-radius: 12px; text-decoration: none; transition: 0.3s; border: 2px solid #333;">
-                    <span><span class="ar-text">عنكبوت اليمن</span><span class="en-text">Yemen Spider</span></span>
-                    <span>3</span>
-                </a>
-                <a href="Page4.html" target="_blank" style="display: flex; justify-content: space-between; align-items: center; width: 100%; margin: 10px 0; padding: 18px; background: #000; color: #fff; font-size: 16px; font-weight: bold; border-radius: 12px; text-decoration: none; transition: 0.3s; border: 2px solid #333;">
-                    <span><span class="ar-text">مكتبي وبحوثي</span><span class="en-text">My Office & Research</span></span>
-                    <span>4</span>
-                </a>
-                <a href="Page5.html" target="_blank" style="display: flex; justify-content: space-between; align-items: center; width: 100%; margin: 10px 0; padding: 18px; background: #000; color: #fff; font-size: 16px; font-weight: bold; border-radius: 12px; text-decoration: none; transition: 0.3s; border: 2px solid #333;">
-                    <span><span class="ar-text">أرشيف نوبل</span><span class="en-text">Nobel Archive</span></span>
-                    <span>5</span>
-                </a>
-                <a href="Page6.html" target="_blank" style="display: flex; justify-content: space-between; align-items: center; width: 100%; margin: 10px 0; padding: 18px; background: #000; color: #fff; font-size: 16px; font-weight: bold; border-radius: 12px; text-decoration: none; transition: 0.3s; border: 2px solid #333;">
-                    <span><span class="ar-text">مختبر الجبري</span><span class="en-text">Jabri Lab</span></span>
-                    <span>6</span>
-                </a>
-                <a href="Page7.html" target="_blank" style="display: flex; justify-content: space-between; align-items: center; width: 100%; margin: 10px 0; padding: 18px; background: #000; color: #fff; font-size: 16px; font-weight: bold; border-radius: 12px; text-decoration: none; transition: 0.3s; border: 2px solid #333;">
-                    <span>RieOS v1.1</span>
-                    <span>7</span>
-                </a>
-                <a href="Page8.html" target="_blank" style="display: flex; justify-content: space-between; align-items: center; width: 100%; margin: 10px 0; padding: 18px; background: #000; color: #fff; font-size: 16px; font-weight: bold; border-radius: 12px; text-decoration: none; transition: 0.3s; border: 2px solid #333;">
-                    <span>RiemannOS</span>
-                    <span>8</span>
-                </a>
-                <a href="Page9.html" target="_blank" style="display: flex; justify-content: space-between; align-items: center; width: 100%; margin: 10px 0; padding: 18px; background: #000; color: #fff; font-size: 16px; font-weight: bold; border-radius: 12px; text-decoration: none; transition: 0.3s; border: 2px solid #333;">
-                    <span>Jabri Checkout</span>
-                    <span>9</span>
-                </a>
-                <a href="Router-all.html" target="_blank" style="display: flex; justify-content: space-between; align-items: center; width: 100%; margin: 10px 0; padding: 18px; background: #000; color: #fff; font-size: 16px; font-weight: bold; border-radius: 12px; text-decoration: none; transition: 0.3s; border: 2px solid #333;">
-                    <span>Jabri-web</span>
-                    <span>10</span>
-                </a>
-                <a href="Office.html" target="_blank" style="display: flex; justify-content: space-between; align-items: center; width: 100%; margin: 10px 0; padding: 18px; background: #000; color: #fff; font-size: 16px; font-weight: bold; border-radius: 12px; text-decoration: none; transition: 0.3s; border: 2px solid #333;">
-                    <span>Jabri.com</span>
-                    <span>11</span>
-                </a>
-            </div>
-        </div>
-        
-        <!-- About Section -->
-        <div style="max-width: 900px; margin: 30px auto;">
-            <div style="background: #1a1a1a; border-radius: 12px; border: 2px solid #333; padding: 15px;">
-                <div style="font-size: 18px; font-weight: bold; color: #ff3333; text-align: center; margin-bottom: 12px;">
-                    <span class="ar-text">السيرة الذاتية</span>
-                    <span class="en-text">About Me</span>
-                </div>
-                <a href="Author-cv.html" style="display: flex; justify-content: space-between; align-items: center; width: 100%; margin: 10px 0; padding: 18px; background: #000; color: #fff; font-size: 16px; font-weight: bold; border-radius: 12px; text-decoration: none; transition: 0.3s; border: 2px solid #333;">
-                    <span class="ar-text">السيرة بالعربية</span>
-                    <span class="en-text">Arabic CV</span>
-                </a>
-                <a href="about.html" style="display: flex; justify-content: space-between; align-items: center; width: 100%; margin: 10px 0; padding: 18px; background: #000; color: #fff; font-size: 16px; font-weight: bold; border-radius: 12px; text-decoration: none; transition: 0.3s; border: 2px solid #333;">
-                    <span class="ar-text">السيرة بالانجليزية</span>
-                    <span class="en-text">English CV</span>
-                </a>
-            </div>
-        </div>
-        
-    </div>
-    
-    <!-- Footer Placeholder -->
-    <div id="footer-placeholder"></div>
-    
-    <!-- No need for local language script – header handles it all -->
-    
-</body>
-</html>
+      `;
+    }
+  }
+})();
