@@ -6,7 +6,6 @@
 
   <!-- Alternates & Canonical -->
   <link rel="alternate" hreflang="ar" href="https://jabri-com.vercel.app/ar-page.html" />
-  <link rel="alternate" hreflang="en" href="https://jabri-com.vercel.app/en-page.html" />
   <link rel="canonical" href="https://jabri-com.vercel.app/en-page.html" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
 
@@ -28,12 +27,12 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-EQBMJKBC24"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
+    function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-EQBMJKBC24');
   </script>
 
-  <!-- Open Graph + Twitter -->
+  <!-- Open Graph -->
   <meta property="og:locale" content="en_US" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Heaven Al-Jabri" />
@@ -46,7 +45,7 @@
   <meta name="twitter:description" content="Researcher Abdulla Al-Jabri – Zx function, Millennium problems, Yemen Heritage." />
   <meta name="twitter:image" content="https://jabri-com.vercel.app/image/Jabri-photo.png" />
 
-  <!-- Schema.org JSON-LD (updated for English page) -->
+  <!-- Schema.org JSON-LD -->
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -125,12 +124,12 @@
   </script>
 
   <style>
-    /* ===== Global Reset & Base ===== */
+    /* ===== جميع الأنماط (نفسها) ===== */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { background: #0a0a0f; color: #e8e8f0; font-family: 'Segoe UI', Arial, sans-serif; padding: 20px; line-height: 1.8; transition: 0.3s; }
-    body.ar { direction: rtl; font-family: 'Tahoma', 'Segoe UI', Arial; }
-    body.en { direction: ltr; font-family: 'Segoe UI', Arial; }
-    .lang-btn { position: fixed; top: 20px; left: 40px; background: #6ae3ff; border: none; color: #0a0a0f; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-weight: 700; z-index: 999; }
+    body.ar { direction: rtl; }
+    body.en { direction: ltr; }
+    .lang-btn { position: fixed; top: 20px; left: 40px; background: #6ae3ff; border: none; color: #0a0a0f; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-weight: 700; z-index: 999; text-decoration: none; }
     .container { max-width: 1000px; margin: 60px auto 0; }
     .header { text-align: center; padding: 40px 20px; background: linear-gradient(135deg, #0a3d62, #1e6f9f); border-radius: 12px; margin-bottom: 30px; border: 2px solid #6ae3ff; }
     .header h1 { font-size: 2.2rem; color: #fff; margin-bottom: 8px; }
@@ -148,287 +147,183 @@
     .city-buttons { display: flex; justify-content: center; flex-wrap: wrap; margin: 20px 0; }
     .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin: 25px 0; }
     .section-title { color: #6ae3ff; text-align: center; margin: 30px 0 20px; font-size: 1.8rem; }
-    .office-grid .btn { background: #000; color: #ffffff; border: 2px solid #ffffff; }
-    .office-grid .btn:hover { background: #1a1a1a; color: #ffffff; transform: scale(1.05); }
-
-    /* ===== Repository Buttons ===== */
     .repo-btn { display: flex; justify-content: space-between; align-items: center; width: 100%; margin: 10px 0; padding: 18px; background: #000; color: #fff; font-size: 16px; font-weight: bold; border-radius: 12px; text-decoration: none; transition: 0.3s; border: 2px solid #333; }
     .repo-btn:hover { background: #2a2a2a; border-color: #6ae3ff; transform: translateY(-3px); }
     .repo-btn .num { background: #6ae3ff; color: #0a0a0f; padding: 2px 12px; border-radius: 20px; font-size: 14px; }
-
     .library-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px; }
     .lib-card { padding: 20px; background: rgba(255,255,255,0.05); border-radius: 12px; text-decoration: none; color: white; text-align: center; transition: 0.3s; border: 2px solid rgba(106,227,255,0.2); }
     .lib-card:hover { background: rgba(106,227,255,0.15); transform: translateY(-5px); border-color: #6ae3ff; }
-
     footer { text-align: center; padding: 30px 20px; margin-top: 40px; border-top: 2px solid #1f1f2e; color: #666; font-size: 14px; }
     footer a { color: #6ae3ff; text-decoration: none; }
-    .ar, .en { display: inline; }
-    body.en .ar { display: none; }
-    body:not(.en) .en { display: none; }
     .hidden { display: none !important; }
-
-    /* Chat */
     .chat-wrapper { position: fixed; bottom: 25px; right: 25px; display: flex; align-items: center; gap: 10px; z-index: 998; }
     .chat-label { background: #1a1a2e; color: #6ae3ff; padding: 10px 18px; border-radius: 25px; border: 2px solid #6ae3ff; font-weight: 700; font-size: 14px; box-shadow: 0 4px 15px rgba(106,227,255,0.3); }
     .chat-btn { background: #6ae3ff; color: #0a0a0f; border: none; border-radius: 50%; width: 60px; height: 60px; font-size: 28px; cursor: pointer; box-shadow: 0 4px 15px rgba(106,227,255,0.4); }
     .chat-btn:hover { transform: scale(1.1); }
     .chat-box { position: fixed; bottom: 95px; right: 25px; width: 320px; background: #1a1a2e; border: 2px solid #6ae3ff; border-radius: 12px; padding: 15px; display: none; z-index: 998; }
     .chat-box textarea { width: 100%; height: 80px; background: #0a0a0f; border: 1px solid #2a2a3e; color: #fff; border-radius: 6px; padding: 8px; margin: 10px 0; }
-
-    /* Music button (fixed top-left) */
-    .music-btn-fixed {
-      position: fixed; top: 20px; left: 250px;
-      background: linear-gradient(135deg, #6ae3ff, #3b9fcb);
-      color: #0a0a0f; border: none; padding: 8px 14px;
-      border-radius: 10px; font-size: 14px; font-weight: bold;
-      font-family: "Segoe UI", Arial, sans-serif;
-      cursor: pointer; transition: 0.3s;
-      display: inline-flex; align-items: center; gap: 5px;
-      box-shadow: 0 0 10px rgba(106, 227, 255, 0.3);
-      z-index: 1000;
-    }
+    .music-btn-fixed { position: fixed; top: 20px; left: 250px; background: linear-gradient(135deg, #6ae3ff, #3b9fcb); color: #0a0a0f; border: none; padding: 8px 14px; border-radius: 10px; font-size: 14px; font-weight: bold; font-family: "Segoe UI", Arial, sans-serif; cursor: pointer; transition: 0.3s; display: inline-flex; align-items: center; gap: 5px; box-shadow: 0 0 10px rgba(106,227,255,0.3); z-index: 1000; }
     .music-btn-fixed.playing { background: linear-gradient(135deg, #ff6a6a, #cb3b3b); color: #fff; }
     .music-btn-fixed:hover { transform: scale(1.08); }
-
-    /* Visitor counter (top-center) */
-    #visitorCounter {
-      position: fixed; top: 10px; left: 50%; transform: translateX(-50%) scale(0.5); transform-origin: center;
-      background: linear-gradient(135deg, #8B4513, #A0522D); color: white;
-      padding: 10px 20px; border-radius: 50px; font-size: 18px; font-weight: bold;
-      box-shadow: 0 4px 15px rgba(139,69,19,0.5); z-index: 9999;
-      display: flex; align-items: center; gap: 8px;
-      border: 1px solid #D2B48C;
-    }
+    #visitorCounter { position: fixed; top: 10px; left: 50%; transform: translateX(-50%) scale(0.5); transform-origin: center; background: linear-gradient(135deg, #8B4513, #A0522D); color: white; padding: 10px 20px; border-radius: 50px; font-size: 18px; font-weight: bold; box-shadow: 0 4px 15px rgba(139,69,19,0.5); z-index: 9999; display: flex; align-items: center; gap: 8px; border: 1px solid #D2B48C; }
+    .header-img-wrapper { display: flex; align-items: center; justify-content: center; gap: 25px; flex-wrap: wrap; }
+    .header-img-wrapper img { width: 110px; height: 110px; border-radius: 50%; border: 3px solid #6ae3ff; object-fit: cover; box-shadow: 0 0 20px rgba(106,227,255,0.3); }
+    .header-text { text-align: center; }
+    @media (max-width: 600px) { .header-img-wrapper { flex-direction: column; gap: 15px; } .header-img-wrapper img { width: 80px; height: 80px; } }
   </style>
 </head>
 <body>
 
-  <!-- Language Toggle Button -->
-  <button class="lang-btn" onclick="toggleLang()"><span class="ar">EN</span><span class="en">عربي</span></button>
+  <!-- Language button (links to Arabic file) -->
+  <a href="ar-page.html" class="lang-btn">العربية 🇸🇦</a>
 
   <div class="container">
 
-    <!-- ===== Unified Header ===== -->
+    <!-- ===== Header ===== -->
     <div class="header">
-      <h1>🏛️ <span class="ar">واحة الجبري</span><span class="en">Heaven Al-Jabri</span></h1>
-      <div class="subtitle"><span class="ar">🇾🇪تراث اليمن العريق🇾🇪</span><span class="en">🇾🇪Yemen Heritage🇾🇪</span></div>
-      <p><span class="ar">من أصفار ريمان إلى بنية الكون | نظرية السندباد الموحدة Z+C+A=1</span><span class="en">From Riemann zeros to Cosmology | Sindbad Unified Theory Z+C+A=1</span></p>
+      <div class="header-img-wrapper">
+        <img src="image/Jabri-photo.png" alt="Photo of Yemeni researcher Eng. Abdulla Al-Jabri" />
+        <div class="header-text">
+          <h1>🏛️ Heaven Al-Jabri</h1>
+          <div class="subtitle">🇾🇪 Yemen Heritage 🇾🇪</div>
+          <p>From Riemann zeros to Cosmology | Sindbad Unified Theory Z+C+A=1</p>
+        </div>
+      </div>
     </div>
 
-    <!-- Researcher Photo -->
-    <img src="image/Yemen-photo1.png" alt="Photo of Yemeni researcher Eng. Abdulla Al-Jabri, founder of Heaven Al-Jabri" style="width:100%; max-width:400px; display:block; margin:20px auto; border-radius:12px; border:2px solid #6ae3ff" />
+    <!-- Extra images -->
+    <img src="image/Yemen-photo1.png" alt="Researcher photo" style="width:100%; max-width:400px; display:block; margin:20px auto; border-radius:12px; border:2px solid #6ae3ff" />
+    <img src="image/Yemen2026.png" alt="Yemen map" style="width:100%; border-radius:12px; margin:20px 0; border:2px solid #6ae3ff" />
 
-    <!-- Yemen Heritage Map -->
-    <img src="image/Yemen2026.png" alt="Map and beauty of Yemen's heritage – Sana'a, Shibam, Socotra" style="width:100%; border-radius:12px; margin:20px 0; border:2px solid #6ae3ff" />
-
-    <!-- ============================================================ -->
-    <!-- SECTION 1: Discover Yemen Cities (Visitor Section)            -->
-    <!-- ============================================================ -->
+    <!-- ===== Section 1: Discover Yemen Cities ===== -->
     <div id="visitor-section" class="section">
-      <h2><span class="ar">🌍 اكتشف مدن اليمن</span><span class="en">🌍 Discover Yemen Cities</span></h2>
-      <p class="desc"><span class="ar">اختر المدينة لتعرف قصتها وصورتها</span><span class="en">Choose a city to see its story &amp; image</span></p>
-
+      <h2>🌍 Discover Yemen Cities</h2>
+      <p class="desc">Choose a city to see its story &amp; image</p>
       <div class="city-buttons">
-        <a href="Sanaa.html" class="btn btn-city"><span class="ar">1- صنعاء</span><span class="en">1- Sana'a</span></a>
-        <a href="Shibam.html" class="btn btn-city"><span class="ar">2- شبام</span><span class="en">2- Shibam</span></a>
-        <a href="Soqatra.html" class="btn btn-city"><span class="ar">3- سقطرى</span><span class="en">3- Socotra</span></a>
+        <a href="Sanaa.html" class="btn btn-city">1- Sana'a</a>
+        <a href="Shibam.html" class="btn btn-city">2- Shibam</a>
+        <a href="Soqatra.html" class="btn btn-city">3- Socotra</a>
       </div>
-
       <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr));">
-        <a href="Nezar.html" class="btn"><span class="ar">يا تونس الخضراء</span><span class="en">Nezar</span></a>
-        <a href="Sindbad-Brdoni.html" class="btn"><span class="ar">السندباد اليمني</span><span class="en">Yemeni Sindbad</span></a>
+        <a href="Nezar.html" class="btn">Nezar</a>
+        <a href="Sindbad-Brdoni.html" class="btn">Yemeni Sindbad</a>
       </div>
 
-      <!-- ========================================================== -->
-      <!-- SECTION 2: Sindbad Gateway – Core Projects (1→11)          -->
-      <!-- ========================================================== -->
-      <h2 class="section-title" style="margin-top:40px;">🧭 <span class="ar">بوابة السندباد - المشاريع الأساسية</span><span class="en">Sindbad Gateway – Core Projects</span></h2>
+      <!-- ===== Section 2: Sindbad Gateway ===== -->
+      <h2 class="section-title" style="margin-top:40px;">🧭 Sindbad Gateway – Core Projects</h2>
       <div style="max-width:900px; margin:0 auto;">
-
-        <!-- Project 1: Yemen Sindbad -->
-        <a href="Page1.html" target="_blank" class="repo-btn">
-          <span><span class="ar">سندباد اليمن</span><span class="en">Yemen Sindbad</span></span>
-          <span class="num">1</span>
-        </a>
-        <!-- Project 2: Yemen Bird -->
-        <a href="Page2.html" target="_blank" class="repo-btn">
-          <span><span class="ar">طائر اليمن</span><span class="en">Yemen Bird</span></span>
-          <span class="num">2</span>
-        </a>
-        <!-- Project 3: Yemen Ankboot -->
-        <a href="Page3.html" target="_blank" class="repo-btn">
-          <span><span class="ar">عنكبوت اليمن</span><span class="en">Yemen Ankboot</span></span>
-          <span class="num">3</span>
-        </a>
-        <!-- Project 4: My Office & Research -->
-        <a href="Page4.html" target="_blank" class="repo-btn">
-          <span><span class="ar">مكتبي وبحوثي</span><span class="en">My Office &amp; Research</span></span>
-          <span class="num">4</span>
-        </a>
-        <!-- Project 5: Nobel Archive -->
-        <a href="research.html" target="_blank" class="repo-btn">
-          <span><span class="ar">أرشيف نوبل</span><span class="en">Nobel Archive</span></span>
-          <span class="num">5</span>
-        </a>
-        <!-- Project 6: Jabri Lab -->
-        <a href="Page6.html" target="_blank" class="repo-btn">
-          <span><span class="ar">مختبر الجبري</span><span class="en">Jabri Lab</span></span>
-          <span class="num">6</span>
-        </a>
-        <!-- Project 7: RieOS v1.1 -->
-        <a href="Page7.html" target="_blank" class="repo-btn">
-          <span>RieOS v1.1</span>
-          <span class="num">7</span>
-        </a>
-        <!-- Project 8: RiemannOS -->
-        <a href="Page8.html" target="_blank" class="repo-btn">
-          <span>RiemannOS</span>
-          <span class="num">8</span>
-        </a>
-        <!-- Project 9: Jabri Checkout -->
-        <a href="Page9.html" target="_blank" class="repo-btn">
-          <span>Jabri Checkout</span>
-          <span class="num">9</span>
-        </a>
-        <!-- Project 10: Jabri-web -->
-        <a href="Router-all.html" target="_blank" class="repo-btn">
-          <span>Jabri-web</span>
-          <span class="num">10</span>
-        </a>
-        <!-- Project 11: Jabri-com -->
-        <a href="jabricom-index.html" target="_blank" class="repo-btn">
-          <span>Jabri-com</span>
-          <span class="num">11</span>
-        </a>
+        <a href="Page1.html" target="_blank" class="repo-btn"><span>Yemen Sindbad</span><span class="num">1</span></a>
+        <a href="Page2.html" target="_blank" class="repo-btn"><span>Yemen Bird</span><span class="num">2</span></a>
+        <a href="Page3.html" target="_blank" class="repo-btn"><span>Yemen Ankboot</span><span class="num">3</span></a>
+        <a href="Page4.html" target="_blank" class="repo-btn"><span>My Office &amp; Research</span><span class="num">4</span></a>
+        <a href="research.html" target="_blank" class="repo-btn"><span>Nobel Archive</span><span class="num">5</span></a>
+        <a href="Page6.html" target="_blank" class="repo-btn"><span>Jabri Lab</span><span class="num">6</span></a>
+        <a href="Page7.html" target="_blank" class="repo-btn"><span>RieOS v1.1</span><span class="num">7</span></a>
+        <a href="Page8.html" target="_blank" class="repo-btn"><span>RiemannOS</span><span class="num">8</span></a>
+        <a href="Page9.html" target="_blank" class="repo-btn"><span>Jabri Checkout</span><span class="num">9</span></a>
+        <a href="Router-all.html" target="_blank" class="repo-btn"><span>Jabri-web</span><span class="num">10</span></a>
+        <a href="jabricom-index.html" target="_blank" class="repo-btn"><span>Jabri-com</span><span class="num">11</span></a>
       </div>
 
-      <!-- ========================================================== -->
-      <!-- SECTION 3: My Office & Research (Library)                   -->
-      <!-- ========================================================== -->
-      <h2 class="section-title">📚 <span class="ar">المكتبه والبحوث</span><span class="en">My Office &amp; Research</span></h2>
-
+      <!-- ===== Section 3: My Office & Research ===== -->
+      <h2 class="section-title">📚 My Office &amp; Research</h2>
       <div class="library-grid">
-        <a href="Office.html" class="lib-card"><h3>📫 <span class="ar">المكتب الرئيسي</span><span class="en">Main Office</span></h3><p><span class="ar">الأبحاث والمعادلات</span><span class="en">Research &amp; Equations</span></p></a>
-        <a href="Yemen-library.html" class="lib-card"><h3>📚 <span class="ar">مكتبة اليمن</span><span class="en">Yemen Library</span></h3><p><span class="ar">تراث ومعرفة</span><span class="en">Heritage &amp; Knowledge</span></p></a>
-        <a href="Pages-Researches.html" class="lib-card"><h3>📄 <span class="ar">صفحات وبحوث</span><span class="en">Pages &amp; Researches</span></h3><p><span class="ar">أبحاث مسجلة</span><span class="en">Registered Papers</span></p></a>
-        <a href="History-pdf.html" class="lib-card"><h3>📖 <span class="ar">كتب التاريخ</span><span class="en">History Books</span></h3><p><span class="ar">وثائق تاريخية</span><span class="en">Historical Docs</span></p></a>
-        <a href="research.html" class="lib-card"><h3>🔬 <span class="ar">بحوث مسجلة</span><span class="en">Registered Researches</span></h3><p><span class="ar">السندباد النظرية</span><span class="en">Sindbad Theory</span></p></a>
-        <a href="Dbase.html" class="lib-card"><h3>🗄️ <span class="ar">قواعد البيانات</span><span class="en">Databases</span></h3><p><span class="ar">معلومات وبيانات</span><span class="en">Info &amp; Data</span></p></a>
-        <a href="yemen-photo.html" class="lib-card"><h3>📸 <span class="ar">السياحة في اليمن</span><span class="en">Tourism in Yemen</span></h3><p><span class="ar">صور ومعالم</span><span class="en">Photos &amp; Landmarks</span></p></a>
-        <a href="Author-cv.html" class="lib-card"><h3>🧑‍💼 <span class="ar">السيرة الذاتية</span><span class="en">Author C.V</span></h3><p><span class="ar">م/ عبدالله الجبري</span><span class="en">Eng. Al-Jabri</span></p></a>
-        <a href="about.html" class="lib-card"><h3>ℹ️ <span class="ar">عن المؤلف</span><span class="en">About Author</span></h3><p><span class="ar">نبذة تعريفية</span><span class="en">Biography</span></p></a>
-        <a href="who-we.html" class="lib-card"><h3>ℹ️ <span class="ar">من نحن </span><span class="en">Who we?</span></h3><p><span class="ar">نحن سندباد اليمن</span><span class="en">Bio</span></p></a>
-        <a href="citations.html" class="lib-card"><h3>ℹ️ <span class="ar">الاستشهاد </span><span class="en">citation</span></h3><p><span class="ar"> الاستشهاد</span><span class="en">cite</span></p></a>
-        <a href="source.html" class="lib-card"><h3>ℹ️ <span class="ar"> المراجع </span><span class="en">Source</span></h3><p><span class="ar">المراجع</span><span class="en">Source</span></p></a>
+        <a href="Office.html" class="lib-card"><h3>📫 Main Office</h3><p>Research &amp; Equations</p></a>
+        <a href="Yemen-library.html" class="lib-card"><h3>📚 Yemen Library</h3><p>Heritage &amp; Knowledge</p></a>
+        <a href="Pages-Researches.html" class="lib-card"><h3>📄 Pages &amp; Researches</h3><p>Registered Papers</p></a>
+        <a href="History-pdf.html" class="lib-card"><h3>📖 History Books</h3><p>Historical Docs</p></a>
+        <a href="research.html" class="lib-card"><h3>🔬 Registered Researches</h3><p>Sindbad Theory</p></a>
+        <a href="Dbase.html" class="lib-card"><h3>🗄️ Databases</h3><p>Info &amp; Data</p></a>
+        <a href="yemen-photo.html" class="lib-card"><h3>📸 Tourism in Yemen</h3><p>Photos &amp; Landmarks</p></a>
+        <a href="Author-cv.html" class="lib-card"><h3>🧑‍💼 Author C.V</h3><p>Eng. Al-Jabri</p></a>
+        <a href="about.html" class="lib-card"><h3>ℹ️ About Author</h3><p>Biography</p></a>
+        <a href="who-we.html" class="lib-card"><h3>ℹ️ Who we?</h3><p>Bio</p></a>
+        <a href="citations.html" class="lib-card"><h3>ℹ️ Citation</h3><p>Cite</p></a>
+        <a href="source.html" class="lib-card"><h3>ℹ️ Source</h3><p>Source</p></a>
       </div>
 
-      <!-- Login Button -->
+      <!-- Login button -->
       <div style="text-align:center; margin-top:40px;">
-        <button class="btn" onclick="login()"><span class="ar">🔑 سجل دخول - افتح لوحتك</span><span class="en">🔑 Login – Open Your Board</span></button>
+        <button class="btn" onclick="login()">🔑 Login – Open Your Board</button>
       </div>
     </div>
 
-    <!-- ============================================================ -->
-    <!-- User Section (hidden until login)                             -->
-    <!-- ============================================================ -->
+    <!-- ===== User Section ===== -->
     <div id="user-section" class="section hidden">
-      <h2><span class="ar">🖥️ لوحتك الشخصية</span><span class="en">🖥️ Your Personal Board</span></h2>
-      <p><span class="ar">مرحباً </span><span class="en">Welcome </span><strong id="username"></strong></p>
-      <h3 style="color:#6ae3ff; margin-top:20px;"><span class="ar">ادخل ملف صفحتك:</span><span class="en">Enter your page file:</span></h3>
+      <h2>🖥️ Your Personal Board</h2>
+      <p>Welcome <strong id="username"></strong></p>
+      <h3 style="color:#6ae3ff; margin-top:20px;">Enter your page file:</h3>
       <input type="text" id="file-input" class="input" placeholder="Jabr.html" />
-      <button class="btn" onclick="openFile()"><span class="ar">تنفيذ وفتح</span><span class="en">Execute &amp; Open</span></button>
+      <button class="btn" onclick="openFile()">Execute &amp; Open</button>
       <div style="text-align:center; margin-top:25px;">
-        <button class="btn btn-danger" onclick="logout()"><span class="ar">خروج</span><span class="en">Logout</span></button>
+        <button class="btn btn-danger" onclick="logout()">Logout</button>
       </div>
     </div>
   </div>
 
-  <!-- ============================================================ -->
-  <!-- FOOTER (original)                                              -->
-  <!-- ============================================================ -->
-  <footer id="site-footer" style="background:#0a0a0f;color:#e8e8f0;padding:30px 15px;border-top:1px solid #2a2a3e;font-family:'Segoe UI',Arial,sans-serif;">
-
-    <!-- Search for researcher -->
+  <!-- ===== Footer ===== -->
+  <footer style="background:#0a0a0f;color:#e8e8f0;padding:30px 15px;border-top:1px solid #2a2a3e;font-family:'Segoe UI',Arial,sans-serif;">
     <div style="text-align:center;margin:20px 0;border-top:1px solid #2a2a3e;padding-top:20px;">
-      <p id="searchTitle"><strong>🔍 Search for Researcher:</strong></p>
+      <p><strong>🔍 Search for Researcher:</strong></p>
       <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
-        <a href="https://www.google.com/search?q=واحة+الجبري&udm=50" target="_blank" rel="noopener" style="color:#6ae3ff;text-decoration:none;">🏛️ <span class="txt" data-ar="بحث عن واحة الجبري" data-en="Search Al-Jabri Heaven">Search Al-Jabri  Heaven</span></a>
-        <a href="https://www.google.com/search?q=واحة+الجبري+|+Heaven+Al-Jabri&udm=50" target="_blank" rel="noopener" style="color:#6ae3ff;text-decoration:none;">🏛️ <span class="txt" data-ar="بحث انجليزي" data-en="Search Al-Jabri Oasis">Search Al-Jabri Oasis</span></a>
-        <a href="https://www.google.com/search?q=مهندس+عبدالله+محمد+ناصر+الجبري&udm=50" target="_blank" rel="noopener" style="color:#6ae3ff;text-decoration:none;">👨‍🔬 <span class="txt" data-ar="بحث عن عبدالله الجبري" data-en="Search Abdulla Al-Jabri">Search Abdulla Mohammed Nasser Al-Jabri</span></a>
-        <a href="https://www.google.com/search?q=Eng.+Abdulla+Mohammed+Nasser+Al-Jabri&udm=50" target="_blank" rel="noopener" style="color:#6ae3ff;text-decoration:none;">🔎 <span class="txt" data-ar="بحث بالانجليزي" data-en="Search Abdulla Al-Jabri">Search Abdulla Al-Jabri</span></a>
+        <a href="https://www.google.com/search?q=واحة+الجبري&udm=50" target="_blank" rel="noopener" style="color:#6ae3ff;text-decoration:none;">🏛️ Search Al-Jabri Heaven</a>
+        <a href="https://www.google.com/search?q=واحة+الجبري+|+Heaven+Al-Jabri&udm=50" target="_blank" rel="noopener" style="color:#6ae3ff;text-decoration:none;">🏛️ Search Al-Jabri Oasis</a>
+        <a href="https://www.google.com/search?q=مهندس+عبدالله+محمد+ناصر+الجبري&udm=50" target="_blank" rel="noopener" style="color:#6ae3ff;text-decoration:none;">👨‍🔬 Search Abdulla Al-Jabri</a>
+        <a href="https://www.google.com/search?q=Eng.+Abdulla+Mohammed+Nasser+Al-Jabri&udm=50" target="_blank" rel="noopener" style="color:#6ae3ff;text-decoration:none;">🔎 Search Abdulla Al-Jabri</a>
       </div>
     </div>
-
-    <!-- Links -->
     <div style="display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin:15px 0;">
-      <!-- Academic -->
-      <a href="https://orcid.org/0009-0003-3319-3822" target="_blank" rel="noopener" style="color:#6ae3ff;text-decoration:none;display:flex;align-items:center;gap:5px;">🆔 <span class="txt" data-ar="ORCID" data-en="ORCID">ORCID</span></a>
-      <a href="https://zenodo.org/records/20513840" target="_blank" rel="noopener" style="color:#6ae3ff;text-decoration:none;display:flex;align-items:center;gap:5px;">📊 <span class="txt" data-ar="زينودو" data-en="Zenodo">Zenodo</span></a>
-      <a href="https://overleaf.com/project" target="_blank" rel="noopener" style="color:#6ae3ff;text-decoration:none;display:flex;align-items:center;gap:5px;">📝 <span class="txt" data-ar="اوفرليف" data-en="Overleaf">Overleaf</span></a>
-      <a href="https://colab.research.google.com/drive/12oG9B7DgsQpTWlvfMm4awnpbt34yPv_h" target="_blank" rel="noopener" style="color:#6ae3ff;text-decoration:none;display:flex;align-items:center;gap:5px;">🧠 <span class="txt" data-ar="كولاب" data-en="Colab">Colab</span></a>
-      <!-- Development -->
-      <a href="https://github.com/jabri-web" target="_blank" rel="noopener" style="color:#6ae3ff;text-decoration:none;display:flex;align-items:center;gap:5px;">🐙 <span class="txt" data-ar="جيتهاب" data-en="GitHub">GitHub</span></a>
-      <a href="https://en.wikipedia.org/wiki/User:Jabri2026" target="_blank" rel="noopener" style="color:#6ae3ff;text-decoration:none;display:flex;align-items:center;gap:5px;">📖 <span class="txt" data-ar="ويكيبيديا" data-en="Wikipedia">Wikipedia</span></a>
-      <!-- Social -->
-      <a href="https://www.facebook.com/share/p/1CvCG9xehw/" target="_blank" rel="noopener" style="color:#6ae3ff;text-decoration:none;display:flex;align-items:center;gap:5px;">📘 <span class="txt" data-ar="فيسبوك" data-en="Facebook">Facebook</span></a>
-      <a href="https://www.instagram.com/reel/Da5zRhypJlo/?igsh=MXVsbHVzbXBsNmF3MQ==" target="_blank" rel="noopener" style="color:#6ae3ff;text-decoration:none;display:flex;align-items:center;gap:5px;">📷 <span class="txt" data-ar="انستجرام" data-en="Instagram">Instagram</span></a>
-      <a href="https://t.me/Jabri2025" target="_blank" rel="noopener" style="color:#6ae3ff;text-decoration:none;display:flex;align-items:center;gap:5px;">✈️ <span class="txt" data-ar="تلجرام" data-en="Telegram">Telegram</span></a>
-      <a href="https://t.me/Heaven_Jabri/" target="_blank" rel="noopener" style="color:#6ae3ff;text-decoration:none;display:flex;align-items:center;gap:5px;">🏛️ <span class="txt" data-ar="قناة الواحة" data-en="Heaven Channel">Heaven</span></a>
-      <a href="https://www.threads.com/@jabri2023" target="_blank" rel="noopener" style="color:#6ae3ff;text-decoration:none;display:flex;align-items:center;gap:5px;">🧵 <span class="txt" data-ar="ثريدز" data-en="Threads">Threads</span></a>
-      <a href="https://chat.whatsapp.com/Haty83AA1eTKGLLXUL7QCK" target="_blank" rel="noopener" style="color:#6ae3ff;text-decoration:none;display:flex;align-items:center;gap:5px;">💬 <span class="txt" data-ar="واتساب" data-en="WhatsApp">WhatsApp</span></a>
-      <a href="https://www.linkedin.com/feed" target="_blank" rel="noopener" style="color:#6ae3ff;text-decoration:none;display:flex;align-items:center;gap:5px;">💼 <span class="txt" data-ar="لينكدإن" data-en="LinkedIn">LinkedIn</span></a>
-      <a href="https://snapchat.com/t/uEiJqBnd" target="_blank" rel="noopener" style="color:#6ae3ff;text-decoration:none;display:flex;align-items:center;gap:5px;">👻 <span class="txt" data-ar="سنابشات" data-en="Snapchat">Snapchat</span></a>
-      <a href="https://links.gemspace.com/join/Jabri2024_Global" target="_blank" rel="noopener" style="color:#6ae3ff;text-decoration:none;display:flex;align-items:center;gap:5px;">💎 <span class="txt" data-ar="الجوهرة" data-en="GemSpace">GemSpace</span></a>
-      <!-- Site -->
-      <a href="mailto:jabri62018@gmail.com" style="color:#6ae3ff;text-decoration:none;display:flex;align-items:center;gap:5px;">📧 <span class="txt" data-ar="البريد" data-en="Email">Email</span></a>
-      <a href="Author-cv.html" style="color:#6ae3ff;text-decoration:none;display:flex;align-items:center;gap:5px;">📄 <span class="txt" data-ar="السيرة الذاتية" data-en="C.V">C.V</span></a>
-      <a href="citations.html" style="color:#6ae3ff;text-decoration:none;display:flex;align-items:center;gap:5px;">♻️ <span class="txt" data-ar="الاستشهادات" data-en="Citations">Citations</span></a>
-      <a href="source.html" style="color:#6ae3ff;text-decoration:none;display:flex;align-items:center;gap:5px;">📜 <span class="txt" data-ar="المصادر" data-en="Source">Source</span></a>
-      <a href="about.html" style="color:#6ae3ff;text-decoration:none;display:flex;align-items:center;gap:5px;">ℹ️ <span class="txt" data-ar="عن الموقع" data-en="About">About</span></a>
-      <a href="who-we.html" style="color:#6ae3ff;text-decoration:none;display:flex;align-items:center;gap:5px;">👥 <span class="txt" data-ar="من نحن" data-en="Who We Are">Who We</span></a>
+      <a href="https://orcid.org/0009-0003-3319-3822" target="_blank" rel="noopener" style="color:#6ae3ff;text-decoration:none;display:flex;align-items:center;gap:5px;">🆔 ORCID</a>
+      <a href="https://zenodo.org/records/20513840" target="_blank" rel="noopener" style="color:#6ae3ff;text-decoration:none;display:flex;align-items:center;gap:5px;">📊 Zenodo</a>
+      <a href="https://overleaf.com/project" target="_blank" rel="noopener" style="color:#6ae3ff;text-decoration:none;display:flex;align-items:center;gap:5px;">📝 Overleaf</a>
+      <a href="https://colab.research.google.com/drive/12oG9B7DgsQpTWlvfMm4awnpbt34yPv_h" target="_blank" rel="noopener" style="color:#6ae3ff;text-decoration:none;display:flex;align-items:center;gap:5px;">🧠 Colab</a>
+      <a href="https://github.com/jabri-web" target="_blank" rel="noopener" style="color:#6ae3ff;text-decoration:none;display:flex;align-items:center;gap:5px;">🐙 GitHub</a>
+      <a href="https://en.wikipedia.org/wiki/User:Jabri2026" target="_blank" rel="noopener" style="color:#6ae3ff;text-decoration:none;display:flex;align-items:center;gap:5px;">📖 Wikipedia</a>
+      <a href="https://www.facebook.com/share/p/1CvCG9xehw/" target="_blank" rel="noopener" style="color:#6ae3ff;text-decoration:none;display:flex;align-items:center;gap:5px;">📘 Facebook</a>
+      <a href="https://www.instagram.com/reel/Da5zRhypJlo/?igsh=MXVsbHVzbXBsNmF3MQ==" target="_blank" rel="noopener" style="color:#6ae3ff;text-decoration:none;display:flex;align-items:center;gap:5px;">📷 Instagram</a>
+      <a href="https://t.me/Jabri2025" target="_blank" rel="noopener" style="color:#6ae3ff;text-decoration:none;display:flex;align-items:center;gap:5px;">✈️ Telegram</a>
+      <a href="https://t.me/Heaven_Jabri/" target="_blank" rel="noopener" style="color:#6ae3ff;text-decoration:none;display:flex;align-items:center;gap:5px;">🏛️ Heaven</a>
+      <a href="https://www.threads.com/@jabri2023" target="_blank" rel="noopener" style="color:#6ae3ff;text-decoration:none;display:flex;align-items:center;gap:5px;">🧵 Threads</a>
+      <a href="https://chat.whatsapp.com/Haty83AA1eTKGLLXUL7QCK" target="_blank" rel="noopener" style="color:#6ae3ff;text-decoration:none;display:flex;align-items:center;gap:5px;">💬 WhatsApp</a>
+      <a href="https://www.linkedin.com/feed" target="_blank" rel="noopener" style="color:#6ae3ff;text-decoration:none;display:flex;align-items:center;gap:5px;">💼 LinkedIn</a>
+      <a href="https://snapchat.com/t/uEiJqBnd" target="_blank" rel="noopener" style="color:#6ae3ff;text-decoration:none;display:flex;align-items:center;gap:5px;">👻 Snapchat</a>
+      <a href="https://links.gemspace.com/join/Jabri2024_Global" target="_blank" rel="noopener" style="color:#6ae3ff;text-decoration:none;display:flex;align-items:center;gap:5px;">💎 GemSpace</a>
+      <a href="mailto:jabri62018@gmail.com" style="color:#6ae3ff;text-decoration:none;display:flex;align-items:center;gap:5px;">📧 Email</a>
+      <a href="Author-cv.html" style="color:#6ae3ff;text-decoration:none;display:flex;align-items:center;gap:5px;">📄 C.V</a>
+      <a href="citations.html" style="color:#6ae3ff;text-decoration:none;display:flex;align-items:center;gap:5px;">♻️ Citations</a>
+      <a href="source.html" style="color:#6ae3ff;text-decoration:none;display:flex;align-items:center;gap:5px;">📜 Source</a>
+      <a href="about.html" style="color:#6ae3ff;text-decoration:none;display:flex;align-items:center;gap:5px;">ℹ️ About</a>
+      <a href="who-we.html" style="color:#6ae3ff;text-decoration:none;display:flex;align-items:center;gap:5px;">👥 Who We</a>
     </div>
-
-    <!-- Copyright -->
-    <p id="copyright" style="margin-top:20px;color:#666;font-size:14px;text-align:center;">
-      © 2026 Eng. Abdulla Mohammed Nasser Al-Jabri – All Rights Reserved
-    </p>
+    <p style="margin-top:20px;color:#666;font-size:14px;text-align:center;">© 2026 Eng. Abdulla Mohammed Nasser Al-Jabri – All Rights Reserved</p>
   </footer>
 
-  <!-- ============================================================ -->
-  <!-- CHAT WIDGET                                                   -->
-  <!-- ============================================================ -->
+  <!-- ===== Chat ===== -->
   <div class="chat-wrapper">
-    <div class="chat-label"><span class="ar">💬 المحادثة</span><span class="en">💬 Message</span></div>
+    <div class="chat-label">💬 Message</div>
     <button class="chat-btn" onclick="toggleChat()">💬</button>
   </div>
   <div class="chat-box" id="chatBox">
-    <h3 style="color:#6ae3ff;text-align:center;"><span class="ar">راسلنا</span><span class="en">Contact Us</span></h3>
+    <h3 style="color:#6ae3ff;text-align:center;">Contact Us</h3>
     <textarea placeholder="Type your message here..."></textarea>
-    <button class="btn" style="width:100%;"><span class="ar">ارسال</span><span class="en">Send</span></button>
+    <button class="btn" style="width:100%;">Send</button>
   </div>
 
-  <!-- ============================================================ -->
-  <!-- VISITOR COUNTER (top-center)                                  -->
-  <!-- ============================================================ -->
+  <!-- ===== Visitor Counter ===== -->
   <div id="visitorCounter">
-    <span id="counterText" data-ar="👥 زوار:" data-en="👥 Visitors:">👥 Visitors:</span>
+    <span id="counterText">👥 Visitors:</span>
     <span id="counterNumber">1</span>
   </div>
 
-  <!-- ============================================================ -->
-  <!-- MUSIC BUTTON (top-left)                                       -->
-  <!-- ============================================================ -->
+  <!-- ===== Music button ===== -->
   <audio id="oasisMusic" src="Image/music.mp3" loop preload="auto"></audio>
   <button class="music-btn-fixed" id="musicToggle" onclick="toggleMusic()">🎵</button>
 
-  <!-- ============================================================ -->
-  <!-- FIREBASE & SCRIPTS                                            -->
-  <!-- ============================================================ -->
+  <!-- ===== Firebase & Scripts ===== -->
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
-
   <script>
-    // ===== Firebase config (replace with your own) =====
+    // Firebase config (replace with your own)
     const firebaseConfig = {
       apiKey: "AIzaSyxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
       authDomain: "jabri-waha.firebaseapp.com",
@@ -439,76 +334,19 @@
     const db = firebase.database();
     const counterRef = db.ref('visitorCount');
 
-    const counterTextEl = document.getElementById('counterText');
     const counterNumberEl = document.getElementById('counterNumber');
 
-    function updateLang() {
-      const isEn = document.body.classList.contains('en');
-      counterTextEl.textContent = isEn ? counterTextEl.getAttribute('data-en') : counterTextEl.getAttribute('data-ar');
-    }
-
-    // Real-time counter updates
     counterRef.on('value', (s) => {
       const count = s.val() || 1;
-      const isEn = document.body.classList.contains('en');
-      counterNumberEl.textContent = count.toLocaleString(isEn ? 'en-US' : 'ar-EG');
-      updateLang();
+      counterNumberEl.textContent = count.toLocaleString('en-US');
     });
 
-    // Increment only once per session
     if (!sessionStorage.getItem('visited')) {
       sessionStorage.setItem('visited', 'true');
       counterRef.transaction(c => (c || 0) + 1);
     }
 
-    // ===== Language toggle =====
-    function toggleLang() {
-      const html = document.documentElement;
-      const isArabic = html.lang === 'ar';
-      const newLang = isArabic ? 'en' : 'ar';
-      html.lang = newLang;
-      html.dir = newLang === 'ar' ? 'rtl' : 'ltr';
-      document.body.classList.toggle('en', newLang === 'en');
-      document.body.classList.toggle('ar', newLang === 'ar');
-      localStorage.setItem('preferred-language', newLang);
-      updateFooterLang();
-      updateLang();
-    }
-
-    function updateFooterLang() {
-      const isEn = document.documentElement.lang === 'en';
-      const footer = document.getElementById('site-footer');
-      if (footer) footer.dir = isEn ? "ltr" : "rtl";
-      const searchTitle = document.getElementById('searchTitle');
-      if (searchTitle) {
-        searchTitle.innerHTML = isEn ?
-          "<strong>🔍 Search for Researcher:</strong>" :
-          "<strong>🔍 البحث عن الباحث:</strong>";
-      }
-      const copyright = document.getElementById('copyright');
-      if (copyright) {
-        copyright.innerHTML = isEn ?
-          "© 2026 Eng. Abdulla Mohammed Nasser Al-Jabri – All Rights Reserved" :
-          "© 2026 م/ عبدالله محمد ناصر الجبري - جميع الحقوق محفوظة";
-      }
-      document.querySelectorAll('#site-footer .txt').forEach(el => {
-        const newText = isEn ? el.getAttribute('data-en') : el.getAttribute('data-ar');
-        if (newText) el.textContent = newText;
-      });
-    }
-
-    // Load saved language
-    document.addEventListener('DOMContentLoaded', function() {
-      const savedLang = localStorage.getItem('preferred-language') || 'en';
-      document.documentElement.lang = savedLang;
-      document.documentElement.dir = savedLang === 'ar' ? 'rtl' : 'ltr';
-      document.body.classList.toggle('en', savedLang === 'en');
-      document.body.classList.toggle('ar', savedLang === 'ar');
-      updateFooterLang();
-      updateLang();
-    });
-
-    // ===== Login / Logout / File open =====
+    // Login / Logout / File open
     function login() {
       document.getElementById('visitor-section').classList.add('hidden');
       document.getElementById('user-section').classList.remove('hidden');
@@ -523,13 +361,13 @@
       if (file) window.open(file, '_blank');
     }
 
-    // ===== Chat toggle =====
+    // Chat
     function toggleChat() {
       let box = document.getElementById('chatBox');
       box.style.display = box.style.display === 'block' ? 'none' : 'block';
     }
 
-    // ===== Music controls =====
+    // Music
     const music = document.getElementById('oasisMusic');
     const musicBtn = document.getElementById('musicToggle');
     let isPlaying = false;
