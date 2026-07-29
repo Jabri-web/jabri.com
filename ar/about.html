@@ -7,10 +7,11 @@
     <title>عن الباحث - واحة الجبري</title>
     <meta name="description" content="تعرف على الباحث اليمني م/ عبدالله محمد ناصر الجبري">
     
-    <link rel="alternate" hreflang="ar" href="about.html" />
-    <link rel="alternate" hreflang="en" href="../en/about.html" />
+    <link rel="alternate" hreflang="ar" href="/ar/about.html" />
+    <link rel="alternate" hreflang="en" href="/en/about.html" />
     
-    <script src="../js/init-page.js" defer></script>
+    <!-- مهم: خليته من الروت عشان يلاقي الفوتر والهيدر -->
+    <script src="/js/init-page.js" defer></script>
     
     <style>
         .about-section {
@@ -56,17 +57,17 @@
             background: #6ae3ff;
             color: #0b0b16;
         }
-        .language-switch a:hover {
-            background: #2a2a4e;
-        }
     </style>
 </head>
 <body>
     
+    <!-- الهيدر بيتحمل تلقائي من init-page.js -->
+    <div id="header-placeholder"></div>
+    
     <!-- Language Switch -->
     <div class="language-switch">
-        <a href="about.html" class="active">🇸🇦 عربي</a>
-        <a href="../en/about.html">🇬🇧 English</a>
+        <a href="/ar/about.html" class="active">🇸🇦 عربي</a>
+        <a href="/en/about.html">🇬🇧 English</a>
     </div>
     
     <!-- Page Content -->
@@ -90,13 +91,14 @@
             </ul>
             
             <div style="margin-top: 2rem; text-align: center;">
-                <a href="index.html" style="color: #6ae3ff; text-decoration: none; display: inline-block; padding: 10px 25px; border: 1px solid #6ae3ff; border-radius: 30px;">
+                <a href="/index.html" style="color: #6ae3ff; text-decoration: none; display: inline-block; padding: 10px 25px; border: 1px solid #6ae3ff; border-radius: 30px;">
                     ← العودة للرئيسية
                 </a>
             </div>
         </div>
     </section>
     
+    <!-- الفوتر بيتحمل تلقائي من init-page.js -->
     <div id="footer-placeholder"></div>
     
 </body>
