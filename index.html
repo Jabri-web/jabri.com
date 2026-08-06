@@ -28,10 +28,8 @@
     <meta name="DC.subject" content="تراث اليمن, الرياضيات, الفيزياء النظرية" />
     <meta name="copyright" content="© 2026 م/ عبدالله محمد ناصر الجبري" />
 
-    <!-- ملكية جوجل -->
+    <!-- Google -->
     <meta name="google-site-verification" content="SN_zKidXbtB2FBxIPwlPgV-L24kJR2eHE9SQRIE76U" />
-
-    <!-- ❌ تم حذف Google Tag Analytics -->
 
     <!-- Open Graph + Twitter -->
     <meta property="og:locale" content="ar_YE">
@@ -46,7 +44,7 @@
     <meta name="twitter:description" content="تراث اليمن العريق وأبحاث الرياضيات والفيزياء">
     <meta name="twitter:image" content="https://jabri-com.vercel.app/image/Jabri-photo.png">
 
-    <!-- Schema.org JSON-LD (نسخة خفيفة) -->
+    <!-- Schema.org JSON-LD -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -315,6 +313,52 @@
             font-size: 14px;
             text-align: center;
         }
+        /* زر الموسيقى */
+        .music-btn-fixed {
+            position: fixed;
+            top: 75px;
+            left: 300px;
+            background: linear-gradient(135deg, #6ae3ff, #3b9fcb);
+            color: #0a0a0f;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: bold;
+            font-family: "Tajawal", Arial, sans-serif;
+            cursor: pointer;
+            transition: 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            box-shadow: 0 0 10px rgba(106, 227, 255, 0.3);
+            z-index: 1000;
+        }
+        .music-btn-fixed.playing {
+            background: linear-gradient(135deg, #ff6a6a, #cb3b3b);
+            color: #fff;
+        }
+        .music-btn-fixed:hover { transform: scale(1.08); }
+        /* عداد الزوار */
+        #visitorCounter {
+            position: fixed;
+            top: 65px;
+            left: 25%;
+            transform: translateX(-50%) scale(0.5);
+            transform-origin: center;
+            background: linear-gradient(135deg, #8B4513, #A0522D);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(139,69,19,0.5);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid #D2B48C;
+        }
         @media (max-width: 600px) {
             .lang-switch {
                 top: 10px;
@@ -329,6 +373,19 @@
             .header h1 { font-size: 1.8rem; }
             .header img { width: 80px; height: 80px; }
             .section-title { font-size: 1.5rem; }
+            .music-btn-fixed {
+                top: 70px;
+                left: 10px;
+                padding: 6px 10px;
+                font-size: 12px;
+            }
+            #visitorCounter {
+                top: 70px;
+                left: 50%;
+                transform: translateX(-50%) scale(0.4);
+                padding: 6px 12px;
+                font-size: 14px;
+            }
         }
     </style>
 </head>
@@ -340,11 +397,15 @@
         <button id="lang-en" onclick="toggleLang()">🇬🇧 English</button>
     </div>
 
-    <!-- ✅ عداد زوار جديد (بدون Firebase) -->
-    <div id="visitorCounter" style="position:fixed; top:65px; left:25%; transform:translateX(-50%) scale(0.5); transform-origin:center; background:linear-gradient(135deg,#8B4513,#A0522D); color:white; padding:10px 20px; border-radius:50px; font-size:18px; font-weight:bold; box-shadow:0 4px 15px rgba(139,69,19,0.5); z-index:9999; display:flex; align-items:center; gap:8px; border:1px solid #D2B48C;">
+    <!-- عداد الزوار -->
+    <div id="visitorCounter">
         <span id="counterText" data-ar="👥 زوار:" data-en="👥 Visitors:">👥 زوار:</span>
         <span id="counterNumber">1</span>
     </div>
+
+    <!-- زر الموسيقى -->
+    <audio id="oasisMusic" src="Image/music.mp3" loop preload="auto"></audio>
+    <button class="music-btn-fixed" id="musicToggle" onclick="toggleMusic()">🎵</button>
 
     <!-- Header -->
     <header class="header">
@@ -578,7 +639,7 @@
     </footer>
 
     <script>
-        // ====== عداد الزوار الجديد (بدون Firebase) ======
+        // ====== عداد الزوار (بدون Firebase) ======
         (function() {
             const counterEl = document.getElementById('counterNumber');
             if (!counterEl) return;
@@ -637,6 +698,48 @@
                 const newText = isEnglish ? el.getAttribute('data-en') : el.getAttribute('data-ar');
                 if (newText) el.textContent = newText;
             });
+        }
+
+        // ====== سكربت الموسيقى ======
+        const music = document.getElementById('oasisMusic');
+        const musicBtn = document.getElementById('musicToggle');
+        let isPlaying = false;
+        if (music) music.volume = 0.4;
+
+        function startMusicOnce() {
+            if (!isPlaying && music) {
+                music.play().then(() => {
+                    isPlaying = true;
+                    if (musicBtn) {
+                        musicBtn.innerHTML = '🔊';
+                        musicBtn.classList.add('playing');
+                    }
+                }).catch(e => console.log('⚠️ الموسيقى تحتاج تفاعل:', e));
+            }
+            document.removeEventListener('touchstart', startMusicOnce);
+            document.removeEventListener('click', startMusicOnce);
+        }
+        document.addEventListener('touchstart', startMusicOnce);
+        document.addEventListener('click', startMusicOnce);
+
+        function toggleMusic() {
+            if (!music) return;
+            if (isPlaying) {
+                music.pause();
+                if (musicBtn) {
+                    musicBtn.innerHTML = '🎵';
+                    musicBtn.classList.remove('playing');
+                }
+                isPlaying = false;
+            } else {
+                music.play().then(() => {
+                    if (musicBtn) {
+                        musicBtn.innerHTML = '🔊';
+                        musicBtn.classList.add('playing');
+                    }
+                    isPlaying = true;
+                }).catch(() => {});
+            }
         }
 
         // ====== التهيئة عند التحميل ======
