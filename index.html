@@ -44,7 +44,7 @@
     <meta name="twitter:description" content="تراث اليمن العريق وأبحاث الرياضيات والفيزياء">
     <meta name="twitter:image" content="https://jabri-com.vercel.app/image/Jabri-photo.png">
 
-    <!-- Schema.org JSON-LD -->
+    <!-- ===== JSON-LD النهائي (نسخة 2.0) ===== -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -53,7 +53,14 @@
           "@type": "Person",
           "@id": "https://jabri-com.vercel.app/#person",
           "name": "م/ عبدالله محمد ناصر الجبري",
-          "alternateName": ["Eng. Abdulla Mohammed Nasser Al-Jabri", "Abdulla Al-Jabri"],
+          "alternateName": ["Eng. Abdulla Mohammed Nasser Al-Jabri", "Abdulla Al-Jabri", "سندباد اليمن"],
+          "knowsAbout": [
+            "نظرية السندباد الموحدة Z+C+A=1",
+            "الرياضيات الكونية",
+            "الفيزياء النظرية",
+            "تراث اليمن",
+            "تاريخ اليمن"
+          ],
           "identifier": {
             "@type": "PropertyValue",
             "propertyID": "ORCID",
@@ -62,16 +69,18 @@
           },
           "url": "https://jabri-com.vercel.app/",
           "image": "https://jabri-com.vercel.app/image/Jabri-photo.png",
-          "jobTitle": "Researcher, Author & Founder",
-          "nationality": "Yemeni",
+          "jobTitle": ["باحث مستقل", "مؤس واحة الجبري"],
+          "nationality": "YE",
           "email": "mailto:jabri62018@gmail.com",
-          "owns": { "@id": "https://jabri-com.vercel.app/#org" },
           "founderOf": { "@id": "https://jabri-com.vercel.app/#org" },
           "sameAs": [
             "https://orcid.org/0009-0003-3319-3822",
             "https://github.com/jabri-web",
             "https://en.wikipedia.org/wiki/User:Jabri2026",
-            "https://jabri-com.vercel.app/"
+            "https://www.linkedin.com/in/abdulla-al-jabri",
+            "https://scholar.google.com/citations?user=jabri",
+            "https://www.researchgate.net/profile/Abdulla-Al-Jabri",
+            "https://www.youtube.com/@HeavenAlJabri"
           ]
         },
         {
@@ -79,14 +88,14 @@
           "@id": "https://jabri-com.vercel.app/#org",
           "name": "واحة الجبري",
           "alternateName": "Heaven Al-Jabri",
+          "description": "منصة توثيق التراث اليمني وبوابة السندباد للأبحاث العلمية",
+          "areaServed": "YE",
           "url": "https://jabri-com.vercel.app/",
           "logo": {
             "@type": "ImageObject",
             "url": "https://jabri-com.vercel.app/image/Jabri-photo.png"
           },
-          "founder": { "@id": "https://jabri-com.vercel.app/#person" },
-          "owner": { "@id": "https://jabri-com.vercel.app/#person" },
-          "publisher": { "@id": "https://jabri-com.vercel.app/#person" }
+          "founder": { "@id": "https://jabri-com.vercel.app/#person" }
         },
         {
           "@type": "WebSite",
@@ -95,8 +104,7 @@
           "name": "واحة الجبري | Heaven Al-Jabri",
           "description": "منصة توثيق التراث اليمني وبوابة السندباد للأبحاث العلمية",
           "publisher": { "@id": "https://jabri-com.vercel.app/#org" },
-          "copyrightHolder": { "@id": "https://jabri-com.vercel.app/#person" },
-          "inLanguage": ["ar"]
+          "inLanguage": ["ar", "en"]
         }
       ]
     }
@@ -167,7 +175,7 @@
             content: '';
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: url('Image/Yemen2026.png') center/cover;
+            background: url('image/Yemen2026.png') center/cover;
             opacity: 0.1;
             z-index: 0;
         }
@@ -313,7 +321,6 @@
             font-size: 14px;
             text-align: center;
         }
-        /* زر الموسيقى */
         .music-btn-fixed {
             position: fixed;
             top: 75px;
@@ -339,7 +346,6 @@
             color: #fff;
         }
         .music-btn-fixed:hover { transform: scale(1.08); }
-        /* عداد الزوار */
         #visitorCounter {
             position: fixed;
             top: 65px;
@@ -404,13 +410,13 @@
     </div>
 
     <!-- زر الموسيقى -->
-    <audio id="oasisMusic" src="Image/music.mp3" loop preload="auto"></audio>
+    <audio id="oasisMusic" src="image/music.mp3" loop preload="auto"></audio>
     <button class="music-btn-fixed" id="musicToggle" onclick="toggleMusic()">🎵</button>
 
     <!-- Header -->
     <header class="header">
         <div class="header-content">
-            <img src="Image/Jabri-photo.png" alt="م/ عبدالله الجبري">
+            <img src="image/Jabri-photo.png" alt="م/ عبدالله الجبري">
             <h1>
                 <span class="ar-text">واحة الجبري</span>
                 <span class="en-text">Heaven Al-Jabri</span>
@@ -639,7 +645,7 @@
     </footer>
 
     <script>
-        // ====== عداد الزوار (بدون Firebase) ======
+        // ====== عداد الزوار ======
         (function() {
             const counterEl = document.getElementById('counterNumber');
             if (!counterEl) return;
@@ -714,7 +720,7 @@
                         musicBtn.innerHTML = '🔊';
                         musicBtn.classList.add('playing');
                     }
-                }).catch(e => console.log('⚠️ الموسيقى تحتاج تفاعل:', e));
+                }).catch(e => console.log('⚠️ تحتاج تفاعل:', e));
             }
             document.removeEventListener('touchstart', startMusicOnce);
             document.removeEventListener('click', startMusicOnce);
@@ -742,7 +748,7 @@
             }
         }
 
-        // ====== التهيئة عند التحميل ======
+        // ====== التهيئة ======
         document.addEventListener('DOMContentLoaded', function() {
             const savedLang = localStorage.getItem('preferred-language') || 'ar';
             document.documentElement.lang = savedLang;
