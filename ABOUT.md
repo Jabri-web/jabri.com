@@ -1,65 +1,84 @@
-# 🧪 jabri.com – الجبري (Repo 12)
-
-**الراوتر التجريبي بنظام Flask – بوابة التطوير المستقبلية**
+<!-- ===== Language Switch Bar (English Active) ===== -->
+<div align="center" style="margin: 10px 0 20px 0; padding: 8px; background: #161b22; border-radius: 30px; display: inline-block; width: auto; border: 1px solid #30363d;">
+    <a href="./ABOUT.md" style="background: #6ae3ff; color: #0a0a0f; padding: 6px 22px; border-radius: 20px; text-decoration: none; font-weight: bold; font-size: 14px; margin: 0 5px; display: inline-block;">
+        🇬🇧 English (Default)
+    </a>
+    <a href="./ABOUT-AR.md" style="background: transparent; color: #c9d1d9; padding: 6px 22px; border-radius: 20px; text-decoration: none; font-weight: bold; font-size: 14px; margin: 0 5px; display: inline-block; border: 1px solid #30363d;">
+        🇾🇪 العربية
+    </a>
+</div>
 
 ---
 
-## 📌 بطاقة هوية المستودع
+# 🧪 jabri.com – Al-Jabri (Repo 12)
 
-| الحقل | التفاصيل |
+**Experimental Flask Router – Future Development Gateway**
+
+---
+
+<div align="center">
+  <img src="Image/Dar2.png" width="80%" style="border-radius: 12px; border: 2px solid #6ae3ff;" alt="Dar Al-Hajar, Yemen">
+  <p><i>🏛️ Dar Al-Hajar, Yemen – The heritage that bridges the ancient past to the future of technology.</i></p>
+</div>
+
+---
+
+## 📌 Repository Identity Card
+
+| Field | Details |
 | :--- | :--- |
-| **اسم المستودع** | `jabri` |
-| **رابط GitHub** | [https://github.com/Jabri-web/jabri.com](https://github.com/Jabri-web/jabri.com) |
-| **النطاق الرسمي** | [https://jabri.com](https://jabri.com) |
+| **Repository Name** | `jabri` |
+| **GitHub Repo** | [https://github.com/Jabri-web/jabri.com](https://github.com/Jabri-web/jabri.com) |
+| **Official Domain** | [https://jabri.com](https://jabri.com) |
 | **GitHub Pages** | [https://jabri-web.github.io/jabri/](https://jabri-web.github.io/jabri/) |
-| **التقنية** | Flask (Python) + HTML/CSS/JS |
-| **اللغة** | العربية (الافتراضي) / English (بديل) |
+| **Technology** | Flask (Python) + HTML/CSS/JS |
+| **Language** | English (Default) / العربية (Alternative) |
 | **DOI** | [10.5281/zenodo.21003991](https://doi.org/10.5281/zenodo.21003991) |
-| **المؤلف** | [م/ عبدالله محمد ناصر الجبري](https://github.com/Jabri-web) |
-| **الترخيص** | CC BY 4.0 |
-| **الهوية** | `Z + C + A = 1` |
+| **Author** | [Eng. Abdulla Mohammed Nasser Al-Jabri](https://github.com/Jabri-web) |
+| **License** | CC BY 4.0 |
+| **Identity** | `Z + C + A = 1` |
 
 ---
 
-## 📖 عن هذا المستودع
+## 📖 About This Repository
 
-**jabri.com** هو المشروع التجريبي لتطوير **راوتر Flask** يهدف إلى:
+**jabri.com** is the experimental project for developing a **Flask Router** aiming to:
 
-- 🧪 **اختبار بنى تحتية جديدة** للمشاريع المستقبلية.
-- 🔗 **ربط جميع المشاريع** الـ 12 في نظام مركزي واحد.
-- 🌐 **توفير واجهة برمجية (API)** للمشاريع الأخرى.
-- 🚀 **تجربة النطاق الرسمي** `jabri.com` كبوابة موحدة.
+- 🧪 **Test new infrastructures** for future projects.
+- 🔗 **Connect all 12 projects** in one central system.
+- 🌐 **Provide an API** for other projects.
+- 🚀 **Test the official domain** `jabri.com` as a unified gateway.
 
 ---
 
-## 🗂️ هيكل المستودع
+## 🗂️ Repository Structure
 
-| الملف / المجلد | الوصف |
+| File / Directory | Description |
 | :--- | :--- |
-| `app.py` | الملف الرئيسي لتشغيل خادم Flask |
-| `templates/` | ملفات HTML الخاصة بالواجهات |
-| `static/` | ملفات CSS، JavaScript، والصور |
-| `routes/` | تعريف المسارات (API endpoints) |
-| `config.py` | إعدادات المشروع |
-| `requirements.txt` | المكتبات المطلوبة للتشغيل |
-| `README.md` | التوثيق الرئيسي (إنجليزي) |
-| `README-AR.md` | التوثيق الرئيسي (عربي) |
-| `ABOUT.md` | هذا الملف (إنجليزي) |
-| `ABOUT-AR.md` | هذا الملف (عربي) |
-| `LICENSE` | رخصة CC BY 4.0 |
+| `app.py` | Main Flask server file |
+| `templates/` | HTML interface files |
+| `static/` | CSS, JavaScript, and images |
+| `routes/` | API endpoints definition |
+| `config.py` | Project settings |
+| `requirements.txt` | Required libraries |
+| `README.md` | Main documentation (English) |
+| `README-AR.md` | Main documentation (Arabic) |
+| `ABOUT.md` | This file (English) |
+| `ABOUT-AR.md` | This file (Arabic) |
+| `LICENSE` | CC BY 4.0 license |
 
 ---
 
-## 🔗 المشاريع المرتبطة (الـ 12)
+## 🔗 Related Projects (All 12)
 
-| # | المشروع | GitHub Pages | DOI |
+| # | Project | GitHub Pages | DOI |
 | :--- | :--- | :--- | :--- |
 | 1 | **Jabri6218.github.io** | [Pages](https://jabri-web.github.io/jabri62018.github.io/) | [20403864](https://doi.org/10.5281/zenodo.20403864) |
 | 2 | **Zx_RieOS_v1.2** | [Pages](https://jabri-web.github.io/Zx_RieOS_v1.2/) | [20100622](https://doi.org/10.5281/zenodo.20100622) |
 | 3 | **Zx_Mother_Function_Jabri** | [Pages](https://Jabri-web.github.io/Zx_Mother_Function_Jabri/) | - |
 | 4 | **Jabri-web.github.io** | [Pages](https://Jabri-web.github.io/) | [20499365](https://doi.org/10.5281/zenodo.20499365) / [20404167](https://doi.org/10.5281/zenodo.20404167) |
 | 5 | **Jabri_Nobble** | [Pages](https://jabri-web.github.io/Jabri_Nobble/) | [20148770](https://doi.org/10.5281/zenodo.20148770) |
-| 6 | **Jabri_lab** | [Pages](https://jabri-web.github.io/jabri_lab/) | قيد النشر |
+| 6 | **Jabri_lab** | [Pages](https://jabri-web.github.io/jabri_lab/) | Publishing |
 | 7 | **Zx_RieOS_v1.1** | [Pages](https://Jabri-web.github.io/Zx_RieOS_v1.1/) | [19981688](https://doi.org/10.5281/zenodo.19981688) / [20070594](https://doi.org/10.5281/zenodo.20070594) |
 | 8 | **Jabri_RiemannOS** | [Pages](https://jabri-web.github.io/Jabri-RiemannOS/) | - |
 | 9 | **Jabri_Checkout** | [Pages](https://jabri-web.github.io/Jabri_Checkout/) | [20513840](https://doi.org/10.5281/zenodo.20513840) |
@@ -69,15 +88,15 @@
 
 ---
 
-## 🔬 كيفية التشغيل محلياً
+## 🔬 How to Run Locally
 
 ```bash
-# استنساخ المستودع
+# Clone the repository
 git clone https://github.com/Jabri-web/jabri.com
 cd jabri.com
 
-# تثبيت المتطلبات
+# Install dependencies
 pip install -r requirements.txt
 
-# تشغيل الخادم
+# Run the server
 python app.py
